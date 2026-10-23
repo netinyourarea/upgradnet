@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { Reveal } from "../components/motion";
 import { PageIntro } from "../components/site-chrome";
@@ -57,15 +57,16 @@ function AboutPage() {
           </div>
           <div className="md:col-span-8">
             <p className="max-w-2xl text-muted-foreground">
-              Since 2016, Upgrade Net has helped households make sense of the internet, cable, TV and
-              streaming services documented as available at their address. We are an independent
+              Since 2016, Upgrade Net has helped households make sense of the internet, cable, TV
+              and streaming services documented as available at their address. We are an independent
               information and assistance desk — not an internet service provider, not an authorized
               retailer, and not affiliated with or endorsed by any network operator.
             </p>
             <p className="mt-6 max-w-2xl text-muted-foreground">
-              Our advisors explain speed tiers, equipment, contract terms and fees in plain language,
-              so you can compare options on your own terms. We never claim to offer the &quot;best&quot;
-              or &quot;cheapest&quot; deal — only a clearer view of what is actually on the table.
+              Our advisors explain speed tiers, equipment, contract terms and fees in plain
+              language, so you can compare options on your own terms. We never claim to offer the
+              &quot;best&quot; or &quot;cheapest&quot; deal — only a clearer view of what is
+              actually on the table.
             </p>
           </div>
         </div>
@@ -96,18 +97,16 @@ function AboutPage() {
         <div className="shell grid gap-10 py-16 md:grid-cols-12 md:py-20">
           <div className="md:col-span-8">
             <p className="label-mono !text-beige">No affiliation</p>
-            <h2 className="display-lg mt-6">
-              We don&apos;t work for any provider.
-            </h2>
+            <h2 className="display-lg mt-6">We don&apos;t work for any provider.</h2>
             <p className="mt-6 max-w-2xl text-beige">
               That independence is the entire point. We are free to point out trade-offs a provider
               might not volunteer, and we have no incentive to steer you toward any particular plan.
             </p>
           </div>
           <div className="md:col-span-4 flex items-end justify-start md:justify-end">
-            <Link to="/contact" className="btn-accent">
-              Talk to an advisor
-            </Link>
+            <a href="tel:+18552024908" className="btn-accent">
+              (855) 202-4908
+            </a>
           </div>
         </div>
       </section>

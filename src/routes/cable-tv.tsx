@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { Parallax, Reveal } from "../components/motion";
 import { PageIntro } from "../components/site-chrome";
@@ -176,9 +176,9 @@ function CablePage() {
               We will read it line by line with you and explain what each charge represents. No
               recommendation is presented as the cheapest or best — only what the terms say.
             </p>
-            <Link to="/contact" className="btn-accent mt-8">
-              Request a bill walkthrough
-            </Link>
+            <a href="tel:+18552024908" className="btn-accent mt-8">
+              (855) 202-4908
+            </a>
           </div>
         </div>
       </section>

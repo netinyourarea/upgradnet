@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { FaqList, PageIntro } from "../components/site-chrome";
 import { usePageMeta } from "../hooks/use-page-meta";
@@ -64,9 +64,9 @@ function FaqPage() {
         </h2>
         <FaqList items={[...FAQS]} />
         <div className="mt-12">
-          <Link to="/contact" className="btn-accent">
-            Still have a question?
-          </Link>
+          <a href="tel:+18552024908" className="btn-accent">
+            (855) 202-4908
+          </a>
         </div>
       </section>
     </>

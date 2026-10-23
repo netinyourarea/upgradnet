@@ -19,7 +19,12 @@ export const Route = createFileRoute("/")({
 const DIRECTORY = [
   { n: "01", to: "/internet", title: "Internet", note: "Fiber, cable & fixed wireless explained" },
   { n: "02", to: "/cable-tv", title: "Cable & TV", note: "Channel line-ups and equipment basics" },
-  { n: "03", to: "/streaming", title: "Streaming", note: "Bandwidth planning for multi-screen homes" },
+  {
+    n: "03",
+    to: "/streaming",
+    title: "Streaming",
+    note: "Bandwidth planning for multi-screen homes",
+  },
   { n: "04", to: "/wifi", title: "Wi-Fi", note: "Coverage, mesh layout and interference" },
 ] as const;
 
@@ -130,9 +135,9 @@ function Home() {
                 pressure and without provider affiliation.
               </p>
               <div className="flex flex-col items-start gap-4">
-                <Link to="/contact" className="btn-accent">
-                  Request assistance
-                </Link>
+                <a href="tel:+18552024908" className="btn-accent">
+                  (855) 202-4908
+                </a>
                 <Link to="/internet" className="btn-outline">
                   Explore services
                 </Link>
@@ -195,16 +200,22 @@ function Home() {
         <div className="marquee-track">
           {[0, 1].map((dup) => (
             <div key={dup} className="flex shrink-0 items-center">
-              {["Fiber", "Cable", "Fixed wireless", "IPTV", "Mesh Wi-Fi", "Streaming", "Bundles"].map(
-                (word) => (
-                  <span
-                    key={`${dup}-${word}`}
-                    className="px-8 font-mono text-xs uppercase tracking-[0.28em]"
-                  >
-                    {word} <span className="text-accent">/</span>
-                  </span>
-                ),
-              )}
+              {[
+                "Fiber",
+                "Cable",
+                "Fixed wireless",
+                "IPTV",
+                "Mesh Wi-Fi",
+                "Streaming",
+                "Bundles",
+              ].map((word) => (
+                <span
+                  key={`${dup}-${word}`}
+                  className="px-8 font-mono text-xs uppercase tracking-[0.28em]"
+                >
+                  {word} <span className="text-accent">/</span>
+                </span>
+              ))}
             </div>
           ))}
         </div>
@@ -242,7 +253,10 @@ function Home() {
       {/* EDITORIAL SPLIT — internet performance */}
       <section aria-labelledby="performance" className="rule-t bg-ivory">
         <div className="shell grid gap-0 md:grid-cols-2">
-          <Parallax className="aspect-[4/3] md:aspect-auto md:h-full md:min-h-[36rem]" strength={34}>
+          <Parallax
+            className="aspect-[4/3] md:aspect-auto md:h-full md:min-h-[36rem]"
+            strength={34}
+          >
             <img
               src={fiber}
               alt="Glowing fiber optic strands against a dark background"
@@ -342,7 +356,10 @@ function Home() {
       </section>
 
       {/* TYPOGRAPHIC STATISTICS */}
-      <section aria-labelledby="stats" className="rule-t bg-ink py-20 text-accent-foreground md:py-28">
+      <section
+        aria-labelledby="stats"
+        className="rule-t bg-ink py-20 text-accent-foreground md:py-28"
+      >
         <div className="shell">
           <h2 id="stats" className="label-mono !text-beige">
             By the numbers
@@ -424,9 +441,9 @@ function Home() {
               affiliation, no pressure.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-accent">
-                Contact the desk
-              </Link>
+              <a href="tel:+18552024908" className="btn-accent">
+                (855) 202-4908
+              </a>
               <Link to="/about" className="btn-outline">
                 Who we are
               </Link>

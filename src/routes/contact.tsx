@@ -33,7 +33,9 @@ function ContactPage() {
             <h2 id="contact-details" className="display-lg mt-6">
               Phone & hours
             </h2>
-            <a href="tel:+18552024908" className="btn-accent mt-8 inline-flex">(855) 202-4908</a>
+            <a href="tel:+18552024908" className="btn-accent mt-8 inline-flex">
+              (855) 202-4908
+            </a>
             <dl className="mt-12 space-y-6 border-t border-line pt-8">
               <div>
                 <dt className="label-mono">Hours</dt>
@@ -105,8 +107,8 @@ function ContactPage() {
                     Send message
                   </button>
                   <p className="mt-4 text-xs text-muted-foreground">
-                    Submitting this form does not commit you to any service. An advisor will follow up
-                    with plain-language options for your address.
+                    Submitting this form does not commit you to any service. An advisor will follow
+                    up with plain-language options for your address.
                   </p>
                 </div>
               </form>

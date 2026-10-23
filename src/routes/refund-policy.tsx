@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { PageIntro } from "../components/site-chrome";
 import { usePageMeta } from "../hooks/use-page-meta";
@@ -33,24 +33,25 @@ function RefundPolicyPage() {
           </div>
           <div className="md:col-span-8 space-y-6 text-muted-foreground">
             <p>
-              Upgrade Net is a free, independent information and assistance desk. We don&apos;t charge
-              households for phone consultations, plan explanations, or help with paperwork — so there
-              is no purchase from us to refund.
+              Upgrade Net is a free, independent information and assistance desk. We don&apos;t
+              charge households for phone consultations, plan explanations, or help with paperwork —
+              so there is no purchase from us to refund.
             </p>
             <p>
-              If you were charged for internet, cable, TV or streaming service, that charge was billed
-              by the provider you signed up with, not by Upgrade Net. Billing disputes, cancellations
-              and refund requests for an actual service need to go directly to that provider — they
-              hold your account and contract, and only they can process a refund or credit.
+              If you were charged for internet, cable, TV or streaming service, that charge was
+              billed by the provider you signed up with, not by Upgrade Net. Billing disputes,
+              cancellations and refund requests for an actual service need to go directly to that
+              provider — they hold your account and contract, and only they can process a refund or
+              credit.
             </p>
             <p>
               If you&apos;re not sure who to contact or how to raise a billing issue with your
               provider, an advisor can help you figure out the right next step.
             </p>
             <div>
-              <Link to="/contact" className="btn-accent">
-                Ask an advisor
-              </Link>
+              <a href="tel:+18552024908" className="btn-accent">
+                (855) 202-4908
+              </a>
             </div>
           </div>
         </div>

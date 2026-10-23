@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { Counter, Parallax, Reveal } from "../components/motion";
 import { PageIntro } from "../components/site-chrome";
@@ -146,9 +146,9 @@ function StreamingPage() {
               If someone streams while someone else plays online, the household needs headroom and a
               router that handles both gracefully. We will explain the trade-offs.
             </p>
-            <Link to="/contact" className="btn-accent mt-8">
-              Talk it through
-            </Link>
+            <a href="tel:+18552024908" className="btn-accent mt-8">
+              (855) 202-4908
+            </a>
           </div>
           <div className="md:col-span-5">
             <div className="aspect-square overflow-hidden">

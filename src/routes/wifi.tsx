@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { Parallax, Reveal } from "../components/motion";
 import { PageIntro } from "../components/site-chrome";
@@ -163,9 +163,9 @@ function WifiPage() {
                 </li>
               ))}
             </ul>
-            <Link to="/contact" className="btn-accent mt-10">
-              Ask about coverage
-            </Link>
+            <a href="tel:+18552024908" className="btn-accent mt-10">
+              (855) 202-4908
+            </a>
           </div>
           <div className="md:col-span-6">
             <div className="aspect-[4/3] overflow-hidden md:aspect-[4/5]">

@@ -45,9 +45,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link to="/contact" className="btn-accent hidden sm:inline-flex">
-            Get assistance
-          </Link>
+          <a href="tel:+18552024908" className="btn-accent hidden sm:inline-flex">
+            (855) 202-4908
+          </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -91,9 +91,9 @@ export function SiteFooter() {
             Talk to a <span className="text-accent">connectivity</span> advisor
           </p>
           <p className="mt-6 max-w-md text-sm text-muted-foreground">
-            Upgrade Net is an independent information and assistance desk. We help households explore
-            and understand internet, cable, TV and streaming options available at their address. We
-            do not sell services on behalf of any provider.
+            Upgrade Net is an independent information and assistance desk. We help households
+            explore and understand internet, cable, TV and streaming options available at their
+            address. We do not sell services on behalf of any provider.
           </p>
           <a href="tel:+18552024908" className="btn-accent mt-8">
             (855) 202-4908

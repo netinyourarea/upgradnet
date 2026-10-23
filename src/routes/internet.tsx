@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 
 import { Counter, Parallax, Reveal } from "../components/motion";
 import { PageIntro } from "../components/site-chrome";
@@ -44,7 +44,10 @@ const TIERS = [
   { speed: "100", fits: "1–2 people, browsing, HD streaming, occasional calls" },
   { speed: "300", fits: "Small family, 4K streaming, regular video meetings" },
   { speed: "500", fits: "Multiple remote workers, large uploads, several consoles" },
-  { speed: "1000", fits: "Device-dense households, creative file transfers, heavy simultaneous use" },
+  {
+    speed: "1000",
+    fits: "Device-dense households, creative file transfers, heavy simultaneous use",
+  },
 ] as const;
 
 function InternetPage() {
@@ -237,9 +240,9 @@ function InternetPage() {
             different options.
           </p>
           <div className="md:col-span-3 md:text-right">
-            <Link to="/contact" className="btn-accent">
-              Check my area
-            </Link>
+            <a href="tel:+18552024908" className="btn-accent">
+              (855) 202-4908
+            </a>
           </div>
         </div>
       </section>

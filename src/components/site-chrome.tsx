@@ -96,7 +96,7 @@ export function SiteFooter() {
             do not sell services on behalf of any provider.
           </p>
           <a href="tel:+18552024908" className="btn-accent mt-8">
-            855-202-4908
+            (855) 202-4908
           </a>
         </div>
 

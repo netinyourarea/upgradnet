@@ -95,8 +95,8 @@ export function SiteFooter() {
             and understand internet, cable, TV and streaming options available at their address. We
             do not sell services on behalf of any provider.
           </p>
-          <a href="/contact" className="btn-accent mt-8">
-            xxx-xxx-xxxx
+          <a href="tel:+18552024908" className="btn-accent mt-8">
+            855-202-4908
           </a>
         </div>
 

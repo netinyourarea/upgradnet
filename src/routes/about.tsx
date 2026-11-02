@@ -96,7 +96,6 @@ function AboutPage() {
     <>
       <GuideHero
         variant="split-reverse"
-        index="06"
         eyebrow="About"
         title="Independent guidance for everyday connectivity."
         lead="Upgrade Net is an independent third-party assistance resource focused on helping households better understand internet connectivity, cable television, streaming and home Wi-Fi."

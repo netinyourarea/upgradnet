@@ -50,7 +50,6 @@ function AdvertisingDisclosurePage() {
   return (
     <LegalPage
       id="advertising"
-      index="13"
       title="Advertising disclosure"
       lead="How and why you may see Upgrade Net advertised, and what our advertisements do and do not mean."
       sections={SECTIONS}

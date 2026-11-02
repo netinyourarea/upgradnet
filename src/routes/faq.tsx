@@ -152,7 +152,6 @@ function FaqPage() {
   return (
     <>
       <PageIntro
-        index="07"
         eyebrow="FAQ"
         title="Questions households ask most."
         lead="Straightforward answers about internet, outages, cable TV, streaming and Wi-Fi, plus a few about Upgrade Net itself."

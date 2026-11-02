@@ -4,13 +4,11 @@ import { PageIntro } from "./site-chrome";
 export type LegalSection = { title: string; body: string };
 
 export function LegalPage({
-  index,
   title,
   lead,
   sections,
   id,
 }: {
-  index: string;
   title: string;
   lead: string;
   sections: readonly LegalSection[];
@@ -18,7 +16,7 @@ export function LegalPage({
 }) {
   return (
     <>
-      <PageIntro index={index} eyebrow="Legal" title={title} lead={lead} />
+      <PageIntro eyebrow="Legal" title={title} lead={lead} />
       <section aria-labelledby={id} className="shell pb-24">
         <h2 id={id} className="sr-only">
           {title} details

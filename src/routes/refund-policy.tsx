@@ -45,7 +45,6 @@ function RefundPolicyPage() {
   return (
     <LegalPage
       id="refund"
-      index="12"
       title="Refund policy"
       lead="Refund requests can be submitted within 7 to 15 days of service purchase, depending on the type of assistance provided. The details below explain how eligibility works."
       sections={SECTIONS}

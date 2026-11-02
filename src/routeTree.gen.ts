@@ -12,14 +12,23 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdvertisingDisclosureRouteImport } from './routes/advertising-disclosure'
+import { Route as BroadbandConnectionAssistanceRouteImport } from './routes/broadband-connection-assistance'
+import { Route as CableTvServicesRouteImport } from './routes/cable-tv-services'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HomeInternetPlansGuideRouteImport } from './routes/home-internet-plans-guide'
 import { Route as InternetRouteImport } from './routes/internet'
+import { Route as InternetServiceAssistanceRouteImport } from './routes/internet-service-assistance'
+import { Route as InternetTroubleshootingRouteImport } from './routes/internet-troubleshooting'
+import { Route as NetworkTroubleshootingRouteImport } from './routes/network-troubleshooting'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as RouterSetupAssistanceRouteImport } from './routes/router-setup-assistance'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TvStreamingRouteImport } from './routes/tv-streaming'
+import { Route as WifiSetupTroubleshootingRouteImport } from './routes/wifi-setup-troubleshooting'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,6 +43,17 @@ const AboutRoute = AboutRouteImport.update({
 const AdvertisingDisclosureRoute = AdvertisingDisclosureRouteImport.update({
   id: '/advertising-disclosure',
   path: '/advertising-disclosure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BroadbandConnectionAssistanceRoute =
+  BroadbandConnectionAssistanceRouteImport.update({
+    id: '/broadband-connection-assistance',
+    path: '/broadband-connection-assistance',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CableTvServicesRoute = CableTvServicesRouteImport.update({
+  id: '/cable-tv-services',
+  path: '/cable-tv-services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -51,9 +71,30 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeInternetPlansGuideRoute = HomeInternetPlansGuideRouteImport.update({
+  id: '/home-internet-plans-guide',
+  path: '/home-internet-plans-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InternetRoute = InternetRouteImport.update({
   id: '/internet',
   path: '/internet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternetServiceAssistanceRoute =
+  InternetServiceAssistanceRouteImport.update({
+    id: '/internet-service-assistance',
+    path: '/internet-service-assistance',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternetTroubleshootingRoute = InternetTroubleshootingRouteImport.update({
+  id: '/internet-troubleshooting',
+  path: '/internet-troubleshooting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NetworkTroubleshootingRoute = NetworkTroubleshootingRouteImport.update({
+  id: '/network-troubleshooting',
+  path: '/network-troubleshooting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -66,6 +107,11 @@ const RefundPolicyRoute = RefundPolicyRouteImport.update({
   path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RouterSetupAssistanceRoute = RouterSetupAssistanceRouteImport.update({
+  id: '/router-setup-assistance',
+  path: '/router-setup-assistance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -76,46 +122,84 @@ const TvStreamingRoute = TvStreamingRouteImport.update({
   path: '/tv-streaming',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WifiSetupTroubleshootingRoute =
+  WifiSetupTroubleshootingRouteImport.update({
+    id: '/wifi-setup-troubleshooting',
+    path: '/wifi-setup-troubleshooting',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
+  '/broadband-connection-assistance': typeof BroadbandConnectionAssistanceRoute
+  '/cable-tv-services': typeof CableTvServicesRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/home-internet-plans-guide': typeof HomeInternetPlansGuideRoute
   '/internet': typeof InternetRoute
+  '/internet-service-assistance': typeof InternetServiceAssistanceRoute
+  '/internet-troubleshooting': typeof InternetTroubleshootingRoute
+  '/network-troubleshooting': typeof NetworkTroubleshootingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/router-setup-assistance': typeof RouterSetupAssistanceRoute
   '/terms': typeof TermsRoute
   '/tv-streaming': typeof TvStreamingRoute
+  '/wifi-setup-troubleshooting': typeof WifiSetupTroubleshootingRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
+  '/broadband-connection-assistance': typeof BroadbandConnectionAssistanceRoute
+  '/cable-tv-services': typeof CableTvServicesRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/home-internet-plans-guide': typeof HomeInternetPlansGuideRoute
   '/internet': typeof InternetRoute
+  '/internet-service-assistance': typeof InternetServiceAssistanceRoute
+  '/internet-troubleshooting': typeof InternetTroubleshootingRoute
+  '/network-troubleshooting': typeof NetworkTroubleshootingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/router-setup-assistance': typeof RouterSetupAssistanceRoute
   '/terms': typeof TermsRoute
   '/tv-streaming': typeof TvStreamingRoute
+  '/wifi-setup-troubleshooting': typeof WifiSetupTroubleshootingRoute
+  '/insights': typeof InsightsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
+  '/broadband-connection-assistance': typeof BroadbandConnectionAssistanceRoute
+  '/cable-tv-services': typeof CableTvServicesRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/home-internet-plans-guide': typeof HomeInternetPlansGuideRoute
   '/internet': typeof InternetRoute
+  '/internet-service-assistance': typeof InternetServiceAssistanceRoute
+  '/internet-troubleshooting': typeof InternetTroubleshootingRoute
+  '/network-troubleshooting': typeof NetworkTroubleshootingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/router-setup-assistance': typeof RouterSetupAssistanceRoute
   '/terms': typeof TermsRoute
   '/tv-streaming': typeof TvStreamingRoute
+  '/wifi-setup-troubleshooting': typeof WifiSetupTroubleshootingRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,54 +207,90 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advertising-disclosure'
+    | '/broadband-connection-assistance'
+    | '/cable-tv-services'
     | '/contact'
     | '/disclaimer'
     | '/faq'
+    | '/home-internet-plans-guide'
     | '/internet'
+    | '/internet-service-assistance'
+    | '/internet-troubleshooting'
+    | '/network-troubleshooting'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/router-setup-assistance'
     | '/terms'
     | '/tv-streaming'
+    | '/wifi-setup-troubleshooting'
+    | '/insights/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/advertising-disclosure'
+    | '/broadband-connection-assistance'
+    | '/cable-tv-services'
     | '/contact'
     | '/disclaimer'
     | '/faq'
+    | '/home-internet-plans-guide'
     | '/internet'
+    | '/internet-service-assistance'
+    | '/internet-troubleshooting'
+    | '/network-troubleshooting'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/router-setup-assistance'
     | '/terms'
     | '/tv-streaming'
+    | '/wifi-setup-troubleshooting'
+    | '/insights'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/advertising-disclosure'
+    | '/broadband-connection-assistance'
+    | '/cable-tv-services'
     | '/contact'
     | '/disclaimer'
     | '/faq'
+    | '/home-internet-plans-guide'
     | '/internet'
+    | '/internet-service-assistance'
+    | '/internet-troubleshooting'
+    | '/network-troubleshooting'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/router-setup-assistance'
     | '/terms'
     | '/tv-streaming'
+    | '/wifi-setup-troubleshooting'
+    | '/insights/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdvertisingDisclosureRoute: typeof AdvertisingDisclosureRoute
+  BroadbandConnectionAssistanceRoute: typeof BroadbandConnectionAssistanceRoute
+  CableTvServicesRoute: typeof CableTvServicesRoute
   ContactRoute: typeof ContactRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
+  HomeInternetPlansGuideRoute: typeof HomeInternetPlansGuideRoute
   InternetRoute: typeof InternetRoute
+  InternetServiceAssistanceRoute: typeof InternetServiceAssistanceRoute
+  InternetTroubleshootingRoute: typeof InternetTroubleshootingRoute
+  NetworkTroubleshootingRoute: typeof NetworkTroubleshootingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
+  RouterSetupAssistanceRoute: typeof RouterSetupAssistanceRoute
   TermsRoute: typeof TermsRoute
   TvStreamingRoute: typeof TvStreamingRoute
+  WifiSetupTroubleshootingRoute: typeof WifiSetupTroubleshootingRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -196,6 +316,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdvertisingDisclosureRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/broadband-connection-assistance': {
+      id: '/broadband-connection-assistance'
+      path: '/broadband-connection-assistance'
+      fullPath: '/broadband-connection-assistance'
+      preLoaderRoute: typeof BroadbandConnectionAssistanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cable-tv-services': {
+      id: '/cable-tv-services'
+      path: '/cable-tv-services'
+      fullPath: '/cable-tv-services'
+      preLoaderRoute: typeof CableTvServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -217,11 +351,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home-internet-plans-guide': {
+      id: '/home-internet-plans-guide'
+      path: '/home-internet-plans-guide'
+      fullPath: '/home-internet-plans-guide'
+      preLoaderRoute: typeof HomeInternetPlansGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/internet': {
       id: '/internet'
       path: '/internet'
       fullPath: '/internet'
       preLoaderRoute: typeof InternetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internet-service-assistance': {
+      id: '/internet-service-assistance'
+      path: '/internet-service-assistance'
+      fullPath: '/internet-service-assistance'
+      preLoaderRoute: typeof InternetServiceAssistanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internet-troubleshooting': {
+      id: '/internet-troubleshooting'
+      path: '/internet-troubleshooting'
+      fullPath: '/internet-troubleshooting'
+      preLoaderRoute: typeof InternetTroubleshootingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/network-troubleshooting': {
+      id: '/network-troubleshooting'
+      path: '/network-troubleshooting'
+      fullPath: '/network-troubleshooting'
+      preLoaderRoute: typeof NetworkTroubleshootingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -238,6 +400,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/router-setup-assistance': {
+      id: '/router-setup-assistance'
+      path: '/router-setup-assistance'
+      fullPath: '/router-setup-assistance'
+      preLoaderRoute: typeof RouterSetupAssistanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -252,6 +421,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TvStreamingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wifi-setup-troubleshooting': {
+      id: '/wifi-setup-troubleshooting'
+      path: '/wifi-setup-troubleshooting'
+      fullPath: '/wifi-setup-troubleshooting'
+      preLoaderRoute: typeof WifiSetupTroubleshootingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -259,14 +442,23 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdvertisingDisclosureRoute: AdvertisingDisclosureRoute,
+  BroadbandConnectionAssistanceRoute: BroadbandConnectionAssistanceRoute,
+  CableTvServicesRoute: CableTvServicesRoute,
   ContactRoute: ContactRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
+  HomeInternetPlansGuideRoute: HomeInternetPlansGuideRoute,
   InternetRoute: InternetRoute,
+  InternetServiceAssistanceRoute: InternetServiceAssistanceRoute,
+  InternetTroubleshootingRoute: InternetTroubleshootingRoute,
+  NetworkTroubleshootingRoute: NetworkTroubleshootingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
+  RouterSetupAssistanceRoute: RouterSetupAssistanceRoute,
   TermsRoute: TermsRoute,
   TvStreamingRoute: TvStreamingRoute,
+  WifiSetupTroubleshootingRoute: WifiSetupTroubleshootingRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -7,6 +7,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/internet", label: "Internet" },
   { to: "/tv-streaming", label: "TV & Streaming" },
+  { to: "/insights", label: "Insights" },
   { to: "/about", label: "About" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
@@ -108,6 +109,7 @@ export function SiteFooter() {
             {[
               { to: "/internet", label: "Internet, outages & Wi-Fi" },
               { to: "/tv-streaming", label: "TV & streaming" },
+              { to: "/insights", label: "Insights" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="link-underline">
@@ -169,12 +171,10 @@ export function SiteFooter() {
 }
 
 export function PageIntro({
-  index,
   eyebrow,
   title,
   lead,
 }: {
-  index: string;
   eyebrow: string;
   title: string;
   lead: string;
@@ -182,9 +182,7 @@ export function PageIntro({
   return (
     <section className="shell grid gap-8 pb-14 pt-16 md:grid-cols-12 md:pb-20 md:pt-24">
       <div className="md:col-span-3">
-        <p className="label-mono">
-          {index} / {eyebrow}
-        </p>
+        <p className="label-mono">{eyebrow}</p>
       </div>
       <div className="md:col-span-9">
         <h1 className="display-lg">{title}</h1>

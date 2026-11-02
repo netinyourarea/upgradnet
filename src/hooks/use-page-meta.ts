@@ -11,6 +11,10 @@ type PageMeta = {
   path?: string;
   /** Optional JSON-LD object (only for content that is visible on the page). */
   jsonLd?: Record<string, unknown>;
+  /** Optional Open Graph / Twitter title and description when they differ from the page's. */
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: "website" | "article";
 };
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
@@ -23,7 +27,15 @@ function setMeta(attr: "name" | "property", key: string, content: string) {
   el.content = content;
 }
 
-export function usePageMeta({ title, description, path, jsonLd }: PageMeta) {
+export function usePageMeta({
+  title,
+  description,
+  path,
+  jsonLd,
+  ogTitle,
+  ogDescription,
+  ogType = "website",
+}: PageMeta) {
   const jsonLdText = jsonLd ? JSON.stringify(jsonLd) : "";
 
   useEffect(() => {
@@ -31,13 +43,16 @@ export function usePageMeta({ title, description, path, jsonLd }: PageMeta) {
 
     if (description) {
       setMeta("name", "description", description);
-      setMeta("property", "og:description", description);
-      setMeta("name", "twitter:description", description);
     }
-    setMeta("property", "og:title", title);
-    setMeta("name", "twitter:title", title);
+    const shareDescription = ogDescription ?? description;
+    if (shareDescription) {
+      setMeta("property", "og:description", shareDescription);
+      setMeta("name", "twitter:description", shareDescription);
+    }
+    setMeta("property", "og:title", ogTitle ?? title);
+    setMeta("name", "twitter:title", ogTitle ?? title);
     setMeta("property", "og:site_name", SITE_NAME);
-    setMeta("property", "og:type", "website");
+    setMeta("property", "og:type", ogType);
     setMeta("property", "og:image", DEFAULT_IMAGE);
     setMeta("name", "twitter:image", DEFAULT_IMAGE);
 
@@ -64,5 +79,5 @@ export function usePageMeta({ title, description, path, jsonLd }: PageMeta) {
     return () => {
       script?.remove();
     };
-  }, [title, description, path, jsonLdText]);
+  }, [title, description, path, jsonLdText, ogTitle, ogDescription, ogType]);
 }

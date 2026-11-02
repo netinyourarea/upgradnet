@@ -49,7 +49,6 @@ function DisclaimerPage() {
   return (
     <LegalPage
       id="disclaimer"
-      index="09"
       title="Disclaimer"
       lead="Who we are, who we are not, and what our guidance can and cannot do."
       sections={POINTS}

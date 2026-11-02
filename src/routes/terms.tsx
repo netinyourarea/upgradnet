@@ -61,7 +61,6 @@ function TermsPage() {
   return (
     <LegalPage
       id="terms"
-      index="11"
       title="Terms & conditions"
       lead="The terms for using Upgrade Net's website and assistance, including our service fee and how it relates to your provider's charges."
       sections={SECTIONS}

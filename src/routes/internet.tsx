@@ -186,7 +186,6 @@ function InternetPage() {
   return (
     <>
       <GuideHero
-        index="01"
         eyebrow="Internet, outages & Wi-Fi"
         title="When your internet stops working, start here."
         lead="The problem may involve your home equipment, device settings, Wi-Fi signal or your service provider's network. This guide helps you tell them apart."

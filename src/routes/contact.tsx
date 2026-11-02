@@ -29,7 +29,6 @@ function ContactPage() {
   return (
     <>
       <GuideHero
-        index="08"
         eyebrow="Contact"
         title="Let's talk about your connection."
         lead="Have questions about internet connectivity, cable television, streaming or home Wi-Fi? Reach out to our assistance team."

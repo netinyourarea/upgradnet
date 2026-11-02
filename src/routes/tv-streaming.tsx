@@ -143,7 +143,6 @@ function TvStreamingPage() {
     <>
       <GuideHero
         variant="split-reverse"
-        index="02"
         eyebrow="Cable TV & streaming"
         title="Understand your TV and streaming connection."
         lead="When channels disappear, the screen says “No Signal” or video keeps buffering, the cause may be your equipment, your internet or the provider."

@@ -61,7 +61,6 @@ function PrivacyPolicyPage() {
   return (
     <LegalPage
       id="privacy"
-      index="10"
       title="Privacy policy"
       lead="What we collect, why we collect it, what we never ask for, and how your information is used."
       sections={SECTIONS}

@@ -46,7 +46,6 @@ export function Disclosure({ className = "" }: { className?: string }) {
 }
 
 export function GuideHero({
-  index,
   eyebrow,
   title,
   lead,
@@ -57,7 +56,6 @@ export function GuideHero({
   actions,
   titleClass = "",
 }: {
-  index: string;
   eyebrow: string;
   title: string;
   lead: string;
@@ -72,9 +70,7 @@ export function GuideHero({
     return (
       <section className="rule-b">
         <div className="shell pb-10 pt-14 md:pb-14 md:pt-20">
-          <p className="label-mono">
-            {index} / {eyebrow}
-          </p>
+          <p className="label-mono">{eyebrow}</p>
           <div className="mt-8 grid gap-10 md:grid-cols-12">
             <h1 className={`display-lg md:col-span-8 ${titleClass}`}>{title}</h1>
             <div className="md:col-span-4 md:self-end">
@@ -98,9 +94,7 @@ export function GuideHero({
     <section className="rule-b">
       <div className="shell grid gap-10 pb-12 pt-14 md:grid-cols-12 md:gap-8 md:pb-16 md:pt-20">
         <div className={`md:col-span-7 ${reverse ? "md:order-2" : ""}`}>
-          <p className="label-mono">
-            {index} / {eyebrow}
-          </p>
+          <p className="label-mono">{eyebrow}</p>
           <h1 className={`display-lg mt-7 text-[clamp(2.1rem,5.2vw,4.6rem)] ${titleClass}`}>
             {title}
           </h1>

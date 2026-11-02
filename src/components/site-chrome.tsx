@@ -6,10 +6,7 @@ import { CallButton, DISCLOSURE, FOOTER_NOTE, PHONE_DISPLAY, PHONE_HREF } from "
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/internet", label: "Internet" },
-  { to: "/outages", label: "Outages" },
-  { to: "/cable-tv", label: "Cable TV" },
-  { to: "/streaming", label: "Streaming" },
-  { to: "/wifi", label: "Wi-Fi" },
+  { to: "/tv-streaming", label: "TV & Streaming" },
   { to: "/about", label: "About" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
@@ -109,11 +106,8 @@ export function SiteFooter() {
           <p className="label-mono">Guides</p>
           <ul className="mt-5 space-y-3 text-sm">
             {[
-              { to: "/internet", label: "Internet connection" },
-              { to: "/outages", label: "Outages & restoration" },
-              { to: "/cable-tv", label: "Cable TV" },
-              { to: "/streaming", label: "Streaming" },
-              { to: "/wifi", label: "Home Wi-Fi" },
+              { to: "/internet", label: "Internet, outages & Wi-Fi" },
+              { to: "/tv-streaming", label: "TV & streaming" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="link-underline">

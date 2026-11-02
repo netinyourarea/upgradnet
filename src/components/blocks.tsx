@@ -16,16 +16,7 @@ export const FOOTER_NOTE =
 export const CALL_GREETING =
   "Thank you for calling Upgrade Net, an independent service assistance platform.";
 
-type To =
-  | "/"
-  | "/internet"
-  | "/outages"
-  | "/cable-tv"
-  | "/streaming"
-  | "/wifi"
-  | "/faq"
-  | "/contact"
-  | "/about";
+type To = "/" | "/internet" | "/tv-streaming" | "/faq" | "/contact" | "/about";
 
 /** Primary call-to-action: always shows, and dials, the toll-free number. */
 export function CallButton({

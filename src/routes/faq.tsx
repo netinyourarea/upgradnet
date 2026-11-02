@@ -14,7 +14,7 @@ const GROUPS: readonly {
   id: string;
   title: string;
   note: string;
-  link?: { to: "/internet" | "/outages" | "/cable-tv" | "/streaming" | "/wifi"; label: string };
+  link?: { to: "/internet" | "/tv-streaming"; label: string };
   items: readonly Faq[];
 }[] = [
   {
@@ -86,89 +86,45 @@ const GROUPS: readonly {
   },
   {
     id: "outages",
-    title: "Outages",
-    note: "Understanding interruptions and restoration.",
-    link: { to: "/outages", label: "Outages & restoration guide" },
+    title: "Outages & Wi-Fi",
+    note: "Interruptions, restoration and wireless coverage.",
+    link: { to: "/internet", label: "Internet, outages & Wi-Fi guide" },
     items: [
       {
-        q: "What causes internet outages?",
-        a: "Outages can result from network maintenance, damaged fiber or cables, equipment failures, power interruptions, severe weather, congestion or technical faults and unexpected infrastructure problems.",
-      },
-      {
         q: "How long can an internet outage last?",
-        a: "There is no universal duration. Minor equipment issues may be resolved quickly, while infrastructure damage or widespread outages can take considerably longer. The duration depends on the fault, whether it is local or widespread, the infrastructure affected, repair-team availability, weather and access conditions, and the provider's restoration process. Your provider is the only reliable source of timing for your area.",
+        a: "There is no universal duration. Minor equipment issues may be resolved quickly, while infrastructure damage or widespread outages can take considerably longer. Your provider is the only reliable source of timing for your area, and Upgrade Net cannot estimate or promise a restoration time.",
       },
       {
         q: "How can I check whether my area has an outage?",
-        a: "Visit your provider's own website, service-status page or app (using mobile data if needed), look for notifications they have sent, contact their support, and see whether neighbors on the same provider have the same problem.",
+        a: "Visit your provider's website, status page or app (using mobile data if needed), look for notifications they have sent, and see whether neighbors on the same provider have the same problem.",
       },
       {
         q: "Will my internet return automatically?",
         a: "Usually yes. When the fault has been fixed, your equipment typically reconnects without help. If your provider says service is restored and you are still offline, restart your router once and, if that does not work, contact them.",
       },
       {
-        q: "Should I contact my provider during an outage?",
-        a: "Check their status page first, since a known incident may already have updates. If there is nothing about your area, or your equipment lights suggest a fault, report the problem so the provider can investigate. Avoid repeatedly restarting equipment while you wait.",
+        q: "Why is Wi-Fi weak in some rooms?",
+        a: "Signals weaken with distance and when passing through walls, floors and large objects. Moving the router to a central, open location, using 5 GHz for nearby devices and Ethernet for fixed devices often helps.",
       },
     ],
   },
   {
-    id: "cable-tv",
-    title: "Cable TV",
-    note: "Channels, signal and equipment.",
-    link: { to: "/cable-tv", label: "Cable TV guide" },
+    id: "tv-streaming",
+    title: "TV & streaming",
+    note: "Channels, signal, buffering and apps.",
+    link: { to: "/tv-streaming", label: "TV & streaming guide" },
     items: [
       {
-        q: "Why are my TV channels missing?",
-        a: "Missing channels can be caused by a loose cable, a set-top box that needs restarting, a signal interruption, a change to your channel package or a problem with a specific channel. Check connections, restart your box according to its instructions, and contact your cable TV provider if channels do not return.",
+        q: "Why are my TV channels missing, or what does No Signal mean?",
+        a: "No Signal means the TV is not receiving a picture from the selected input. Check that the right input is selected, that the TV and cable box are on and that HDMI and coaxial cables are firm. Restart the box following its instructions, and contact your cable provider if channels do not return.",
       },
-      {
-        q: "What does No Signal mean?",
-        a: "It means the TV is not receiving a picture from the selected input. Check that the right input source is selected, that the TV and the cable box are powered on and that HDMI and coaxial cables are firmly connected. If those are fine, the issue may be with the box or a service interruption.",
-      },
-      {
-        q: "Why is my cable television picture freezing?",
-        a: "Freezing or pixelation can reflect a weak signal, damaged or loose cables, too many splitters, an overheating or faulty set-top box, or an interruption on the provider's network. Check connections, restart the box and make sure it has airflow. If it continues, contact your provider.",
-      },
-    ],
-  },
-  {
-    id: "streaming",
-    title: "Streaming",
-    note: "Buffering, quality and apps.",
-    link: { to: "/streaming", label: "Streaming guide" },
-    items: [
       {
         q: "Why do streaming videos buffer?",
-        a: "Video is delivered in small pieces. When the next piece arrives too slowly, playback pauses. This can be caused by a weak Wi-Fi signal, other devices using the connection, device limitations, busy network periods or an issue with the streaming platform.",
-      },
-      {
-        q: "Does Wi-Fi affect streaming quality?",
-        a: "Yes. A weak or crowded Wi-Fi signal can cause buffering and lower picture quality even on a fast internet plan. Moving the router or device closer, reducing obstacles, using the 5 GHz band or connecting by Ethernet can help.",
+        a: "Video is delivered in small pieces. When the next piece arrives too slowly, playback pauses. Causes include a weak Wi-Fi signal, other devices using the connection, device limits or a problem with the streaming platform. Moving closer to the router or using Ethernet can help.",
       },
       {
         q: "Why do streaming apps stop loading?",
-        a: "The device might be offline, the app or the device software may need to be restarted or updated, or the streaming platform may be having problems. Check whether other apps work, restart the app and device and see whether the platform reports an issue.",
-      },
-    ],
-  },
-  {
-    id: "wifi",
-    title: "Wi-Fi",
-    note: "Coverage, signal and devices.",
-    link: { to: "/wifi", label: "Home Wi-Fi guide" },
-    items: [
-      {
-        q: "Why is Wi-Fi weak in some rooms?",
-        a: "Signals weaken with distance and when passing through walls, floors and large objects. A poorly positioned router or interference can make it worse. Moving the router to a central, open location often helps.",
-      },
-      {
-        q: "How can I improve Wi-Fi coverage?",
-        a: "Place the router centrally and off the floor, reduce obstructions, keep it away from interference, update its firmware where supported, use 5 GHz for nearby devices and Ethernet for fixed devices. In larger homes, a mesh system or wired access point may be worth considering.",
-      },
-      {
-        q: "Why do devices disconnect from Wi-Fi?",
-        a: "Likely causes include a weak signal, interference, an overloaded or faulty router, power-saving settings on the device and outdated software. If every device disconnects at once, the router or the internet service itself may be the cause.",
+        a: "The device might be offline, the app or device software may need restarting or updating, or the platform may be having problems. Check whether other apps work, restart the app and device and see whether the platform reports an issue.",
       },
     ],
   },

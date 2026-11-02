@@ -2,10 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://upgradnet.com/</loc></url>
   <url><loc>https://upgradnet.com/internet</loc></url>
-  <url><loc>https://upgradnet.com/outages</loc></url>
-  <url><loc>https://upgradnet.com/cable-tv</loc></url>
-  <url><loc>https://upgradnet.com/streaming</loc></url>
-  <url><loc>https://upgradnet.com/wifi</loc></url>
   <url><loc>https://upgradnet.com/about</loc></url>
   <url><loc>https://upgradnet.com/faq</loc></url>
   <url><loc>https://upgradnet.com/contact</loc></url>
@@ -14,4 +10,5 @@
   <url><loc>https://upgradnet.com/terms</loc></url>
   <url><loc>https://upgradnet.com/refund-policy</loc></url>
   <url><loc>https://upgradnet.com/advertising-disclosure</loc></url>
+  <url><loc>https://upgradnet.com/tv-streaming</loc></url>
 </urlset>

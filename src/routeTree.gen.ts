@@ -12,17 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdvertisingDisclosureRouteImport } from './routes/advertising-disclosure'
-import { Route as CableTvRouteImport } from './routes/cable-tv'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InternetRouteImport } from './routes/internet'
-import { Route as OutagesRouteImport } from './routes/outages'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
-import { Route as StreamingRouteImport } from './routes/streaming'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as WifiRouteImport } from './routes/wifi'
+import { Route as TvStreamingRouteImport } from './routes/tv-streaming'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -37,11 +34,6 @@ const AboutRoute = AboutRouteImport.update({
 const AdvertisingDisclosureRoute = AdvertisingDisclosureRouteImport.update({
   id: '/advertising-disclosure',
   path: '/advertising-disclosure',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CableTvRoute = CableTvRouteImport.update({
-  id: '/cable-tv',
-  path: '/cable-tv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -64,11 +56,6 @@ const InternetRoute = InternetRouteImport.update({
   path: '/internet',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OutagesRoute = OutagesRouteImport.update({
-  id: '/outages',
-  path: '/outages',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
@@ -79,19 +66,14 @@ const RefundPolicyRoute = RefundPolicyRouteImport.update({
   path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StreamingRoute = StreamingRouteImport.update({
-  id: '/streaming',
-  path: '/streaming',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WifiRoute = WifiRouteImport.update({
-  id: '/wifi',
-  path: '/wifi',
+const TvStreamingRoute = TvStreamingRouteImport.update({
+  id: '/tv-streaming',
+  path: '/tv-streaming',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -99,50 +81,41 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
-  '/cable-tv': typeof CableTvRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
   '/internet': typeof InternetRoute
-  '/outages': typeof OutagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/streaming': typeof StreamingRoute
   '/terms': typeof TermsRoute
-  '/wifi': typeof WifiRoute
+  '/tv-streaming': typeof TvStreamingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
-  '/cable-tv': typeof CableTvRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
   '/internet': typeof InternetRoute
-  '/outages': typeof OutagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/streaming': typeof StreamingRoute
   '/terms': typeof TermsRoute
-  '/wifi': typeof WifiRoute
+  '/tv-streaming': typeof TvStreamingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advertising-disclosure': typeof AdvertisingDisclosureRoute
-  '/cable-tv': typeof CableTvRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
   '/internet': typeof InternetRoute
-  '/outages': typeof OutagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/streaming': typeof StreamingRoute
   '/terms': typeof TermsRoute
-  '/wifi': typeof WifiRoute
+  '/tv-streaming': typeof TvStreamingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,66 +123,54 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advertising-disclosure'
-    | '/cable-tv'
     | '/contact'
     | '/disclaimer'
     | '/faq'
     | '/internet'
-    | '/outages'
     | '/privacy-policy'
     | '/refund-policy'
-    | '/streaming'
     | '/terms'
-    | '/wifi'
+    | '/tv-streaming'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/advertising-disclosure'
-    | '/cable-tv'
     | '/contact'
     | '/disclaimer'
     | '/faq'
     | '/internet'
-    | '/outages'
     | '/privacy-policy'
     | '/refund-policy'
-    | '/streaming'
     | '/terms'
-    | '/wifi'
+    | '/tv-streaming'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/advertising-disclosure'
-    | '/cable-tv'
     | '/contact'
     | '/disclaimer'
     | '/faq'
     | '/internet'
-    | '/outages'
     | '/privacy-policy'
     | '/refund-policy'
-    | '/streaming'
     | '/terms'
-    | '/wifi'
+    | '/tv-streaming'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdvertisingDisclosureRoute: typeof AdvertisingDisclosureRoute
-  CableTvRoute: typeof CableTvRoute
   ContactRoute: typeof ContactRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
   InternetRoute: typeof InternetRoute
-  OutagesRoute: typeof OutagesRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
-  StreamingRoute: typeof StreamingRoute
   TermsRoute: typeof TermsRoute
-  WifiRoute: typeof WifiRoute
+  TvStreamingRoute: typeof TvStreamingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -233,13 +194,6 @@ declare module '@tanstack/react-router' {
       path: '/advertising-disclosure'
       fullPath: '/advertising-disclosure'
       preLoaderRoute: typeof AdvertisingDisclosureRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cable-tv': {
-      id: '/cable-tv'
-      path: '/cable-tv'
-      fullPath: '/cable-tv'
-      preLoaderRoute: typeof CableTvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -270,13 +224,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternetRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/outages': {
-      id: '/outages'
-      path: '/outages'
-      fullPath: '/outages'
-      preLoaderRoute: typeof OutagesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacy-policy': {
       id: '/privacy-policy'
       path: '/privacy-policy'
@@ -291,13 +238,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/streaming': {
-      id: '/streaming'
-      path: '/streaming'
-      fullPath: '/streaming'
-      preLoaderRoute: typeof StreamingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -305,11 +245,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/wifi': {
-      id: '/wifi'
-      path: '/wifi'
-      fullPath: '/wifi'
-      preLoaderRoute: typeof WifiRouteImport
+    '/tv-streaming': {
+      id: '/tv-streaming'
+      path: '/tv-streaming'
+      fullPath: '/tv-streaming'
+      preLoaderRoute: typeof TvStreamingRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -319,17 +259,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdvertisingDisclosureRoute: AdvertisingDisclosureRoute,
-  CableTvRoute: CableTvRoute,
   ContactRoute: ContactRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
   InternetRoute: InternetRoute,
-  OutagesRoute: OutagesRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
-  StreamingRoute: StreamingRoute,
   TermsRoute: TermsRoute,
-  WifiRoute: WifiRoute,
+  TvStreamingRoute: TvStreamingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

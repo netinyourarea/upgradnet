@@ -6,15 +6,9 @@ import { FaqList } from "../components/site-chrome";
 import { usePageMeta } from "../hooks/use-page-meta";
 import heroHome from "../assets/hero-home.jpg";
 import internetHero from "../assets/internet-hero.jpg";
-import cable from "../assets/cable.jpg";
 import streamingImg from "../assets/streaming.jpg";
-import wifiImg from "../assets/wifi.jpg";
 import fiber from "../assets/fiber.jpg";
 import coverage from "../assets/coverage.jpg";
-import gaming from "../assets/gaming.jpg";
-import work from "../assets/work.jpg";
-import smartHome from "../assets/smart-home.jpg";
-import compare from "../assets/compare.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -24,62 +18,22 @@ const GUIDES = [
   {
     n: "01",
     to: "/internet",
-    title: "Internet Connectivity",
+    title: "Internet, Outages & Wi-Fi",
     img: internetHero,
     alt: "Bright apartment with a laptop open on a marble table beside a sunlit living room",
     note: "Find out why a connection slows down, drops out or stops working, and what to check first.",
-    topics: [
-      "Slow internet",
-      "Sudden disconnections",
-      "No internet access",
-      "Network interruptions",
-    ],
+    topics: ["Slow internet", "Outages", "Weak Wi-Fi", "No internet access"],
     tone: "bg-background",
   },
   {
     n: "02",
-    to: "/cable-tv",
-    title: "Cable TV",
-    img: cable,
-    alt: "Dark home cinema with warm wall lighting and a large screen",
-    note: "Understand missing channels, frozen pictures and the “No Signal” message on your television.",
-    topics: [
-      "Missing channels",
-      "Signal interruptions",
-      "Television connection problems",
-      "Equipment troubleshooting",
-    ],
-    tone: "bg-beige",
-  },
-  {
-    n: "03",
-    to: "/streaming",
-    title: "Streaming",
+    to: "/tv-streaming",
+    title: "TV & Streaming",
     img: streamingImg,
     alt: "Family watching a film on a large television in a living room at dusk",
-    note: "See what lies behind buffering, changing picture quality and apps that will not load.",
-    topics: [
-      "Video buffering",
-      "Poor streaming quality",
-      "App connection problems",
-      "Streaming interruptions",
-    ],
+    note: "Understand missing channels, the “No Signal” message and video that keeps buffering.",
+    topics: ["Missing channels", "No Signal", "Video buffering", "Apps not loading"],
     tone: "bg-ink text-accent-foreground",
-  },
-  {
-    n: "04",
-    to: "/wifi",
-    title: "Home Wi-Fi",
-    img: wifiImg,
-    alt: "White Wi-Fi router on an oak console table in a warm interior",
-    note: "Learn how your wireless network behaves in a real home, and how to get steadier coverage.",
-    topics: [
-      "Weak Wi-Fi signals",
-      "Router placement",
-      "Device connectivity",
-      "Wireless network problems",
-    ],
-    tone: "bg-ivory",
   },
 ] as const;
 
@@ -121,68 +75,6 @@ const PROBLEMS = [
   {
     q: "Why does restarting a router sometimes help?",
     a: "A router is a small computer: a restart clears a frozen state and forces a fresh connection, but it cannot fix a problem outside your home.",
-  },
-] as const;
-
-const SCOPES = [
-  {
-    t: "One device",
-    d: "Other devices work normally. The issue is most likely with that device's Wi-Fi setting, saved network or software.",
-  },
-  {
-    t: "Your whole home",
-    d: "Every device is affected. Check your router and modem lights and cables, then consider whether your service is affected.",
-  },
-  {
-    t: "A wider area",
-    d: "Neighbors using the same provider report problems too, or the provider's status page lists an incident in your area.",
-  },
-] as const;
-
-const WAITING = [
-  "Check your provider's own outage or status page, using mobile data.",
-  "Avoid repeatedly restarting equipment; one proper restart is enough.",
-  "Save open work and keep your phone and laptop charged.",
-  "Use mobile data sparingly if it is your backup connection.",
-  "Look for text, email or app notifications from your provider.",
-] as const;
-
-const EVERYDAY = [
-  {
-    img: compare,
-    alt: "Hands holding a tablet on a bright desk while reviewing a household's devices",
-    tag: "Multiple-device households",
-    title: "Every person brings three screens",
-    body: "Phones, tablets, laptops and consoles all share one connection.",
-    span: "md:col-span-7",
-    ratio: "aspect-[16/10]",
-  },
-  {
-    img: work,
-    alt: "Bright home office with a laptop on a video call",
-    tag: "Remote working",
-    title: "Video calls need a steady line",
-    body: "A call does not need enormous speed, but it does need stability.",
-    span: "md:col-span-5",
-    ratio: "aspect-square",
-  },
-  {
-    img: gaming,
-    alt: "Gaming desk with a monitor and headset in warm amber light",
-    tag: "Entertainment",
-    title: "Streaming and gaming",
-    body: "Streaming adapts picture quality to the connection, while online games care most about consistency.",
-    span: "md:col-span-5",
-    ratio: "aspect-square",
-  },
-  {
-    img: smartHome,
-    alt: "Hand touching a wall-mounted smart home control panel",
-    tag: "Smart home & everyday use",
-    title: "Small devices, constant connection",
-    body: "Cameras, speakers, thermostats and doorbells use little data but stay connected all day, and they add up on a home network.",
-    span: "md:col-span-7",
-    ratio: "aspect-[16/10]",
   },
 ] as const;
 
@@ -288,7 +180,7 @@ function Home() {
           <h2 id="guides" className="display-lg max-w-2xl text-[clamp(2rem,4.8vw,4rem)]">
             Explore our guides
           </h2>
-          <p className="label-mono">Four areas of home connectivity</p>
+          <p className="label-mono">Two guides</p>
         </div>
         <ul className="mt-10 grid gap-6 md:grid-cols-2">
           {GUIDES.map((g, i) => (
@@ -395,57 +287,6 @@ function Home() {
         </div>
       </section>
 
-      {/* E. OUTAGES AND RESTORATION */}
-      <section aria-labelledby="outages" className="bg-ivory rule-b">
-        <div className="shell py-16 md:py-24">
-          <div className="grid gap-8 md:grid-cols-12">
-            <div className="md:col-span-6">
-              <p className="label-mono">Outages and restoration</p>
-              <h2 id="outages" className="display-lg mt-5 text-[clamp(2rem,4.8vw,4rem)]">
-                When the service itself is down
-              </h2>
-            </div>
-            <div className="space-y-5 text-muted-foreground md:col-span-6">
-              <p>
-                An internet outage is an interruption in connectivity. It can affect one household,
-                a neighborhood or a wider service area. A problem with your own equipment and a
-                provider-side outage can look the same from the sofa, but they are fixed by
-                different people.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-14 grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-7">
-              <p className="label-mono">How wide is the problem?</p>
-              <ul className="mt-5 grid border-l border-t border-line-strong sm:grid-cols-3">
-                {SCOPES.map((s, i) => (
-                  <li key={s.t} className="border-b border-r border-line-strong bg-background p-5">
-                    <p className="font-display text-xs font-extrabold text-accent">0{i + 1}</p>
-                    <h3 className="mt-2 text-lg font-extrabold uppercase leading-tight">{s.t}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground">{s.d}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="md:col-span-5">
-              <p className="label-mono">What you can check while waiting</p>
-              <ul className="mt-5 divide-y divide-line border-y border-line">
-                {WAITING.map((w) => (
-                  <li key={w} className="flex gap-3 py-3 text-sm text-muted-foreground">
-                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" />
-                    {w}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <Link to="/outages" className="btn-outline mt-12">
-            Read the outage guide
-          </Link>
-        </div>
-      </section>
-
       {/* Photographic break */}
       <section className="relative">
         <Parallax className="h-[52vh] min-h-[20rem] w-full" strength={44}>
@@ -467,37 +308,6 @@ function Home() {
               Restoration depends on the provider, the fault and the circumstances.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* F. BUILT AROUND EVERYDAY CONNECTIVITY */}
-      <section aria-labelledby="everyday" className="shell py-16 md:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-6">
-          <h2 id="everyday" className="display-lg max-w-2xl text-[clamp(2rem,4.8vw,4rem)]">
-            Built around everyday connectivity
-          </h2>
-          <p className="max-w-xs text-sm text-muted-foreground">
-            No two households use their connection the same way. Here is what the load looks like.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-12">
-          {EVERYDAY.map((card, i) => (
-            <article key={card.title} className={card.span}>
-              <Reveal delay={i * 100}>
-                <div className={`overflow-hidden ${card.ratio}`}>
-                  <img
-                    src={card.img}
-                    alt={card.alt}
-                    loading="lazy"
-                    className="img-cover transition-transform duration-700 hover:scale-[1.04]"
-                  />
-                </div>
-                <p className="label-mono mt-5 border-t border-line pt-4">{card.tag}</p>
-                <h3 className="mt-3 text-2xl font-extrabold uppercase md:text-3xl">{card.title}</h3>
-                <p className="mt-3 max-w-lg text-sm text-muted-foreground">{card.body}</p>
-              </Reveal>
-            </article>
-          ))}
         </div>
       </section>
 

@@ -1,61 +1,54 @@
 ﻿import { createFileRoute } from "@tanstack/react-router";
 
-import { PageIntro } from "../components/site-chrome";
+import { LegalPage } from "../components/legal";
 import { usePageMeta } from "../hooks/use-page-meta";
 
 export const Route = createFileRoute("/refund-policy")({
   component: RefundPolicyPage,
 });
 
+const SECTIONS = [
+  {
+    title: "The refund window",
+    body: "Refund requests can be submitted within 7 to 15 days of service purchase, depending on the type of assistance provided. A request made after that window may not be eligible for review.",
+  },
+  {
+    title: "What eligibility depends on",
+    body: "Whether a refund can be approved depends on the service type you requested and on whether the assistance has already been delivered. For example, a request made before any assistance has started is treated differently from one made after the assistance has been completed. Each request is reviewed individually, and a refund is not unconditional.",
+  },
+  {
+    title: "How to request a refund",
+    body: "Call us on (855) 202-4908 or use the form on our Contact page. Please give the name you used when you requested assistance, the date of the request and a short description of why you are asking for a refund, so we can review it.",
+  },
+  {
+    title: "Charges from your provider",
+    body: "Our service fee is separate from anything your cable, internet or streaming provider charges you. We cannot refund, credit or change provider charges, because we do not issue provider bills. Billing disputes, cancellations and credits for provider services must be raised directly with your provider.",
+  },
+  {
+    title: "What we do not do",
+    body: "We do not sell internet, cable or streaming plans, so there is no provider plan to return through us. We also do not act on your provider account.",
+  },
+  {
+    title: "Questions",
+    body: "If you are unsure whether your situation qualifies, contact us before the window closes and we will explain how the review works.",
+  },
+] as const;
+
 function RefundPolicyPage() {
   usePageMeta({
-    title: "Refund Policy — Upgrade Net",
+    title: "Refund Policy | Upgrade Net",
     description:
-      "Upgrade Net's assistance service is free, so there is nothing to refund. Billing questions belong with your actual internet, cable or streaming provider.",
+      "Refund requests for Upgrade Net assistance can be submitted within 7 to 15 days of service purchase, depending on the type of assistance provided. Read the eligibility details.",
+    path: "/refund-policy",
   });
 
   return (
-    <>
-      <PageIntro
-        index="10"
-        eyebrow="Legal"
-        title="Refund policy"
-        lead="Short version: we don't charge for our assistance, so there's nothing to refund."
-      />
-
-      <section aria-labelledby="refund" className="rule-t bg-ivory">
-        <div className="shell grid gap-14 py-20 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <p className="label-mono">Why</p>
-            <h2 id="refund" className="display-lg mt-6">
-              We don&apos;t sell anything
-            </h2>
-          </div>
-          <div className="md:col-span-8 space-y-6 text-muted-foreground">
-            <p>
-              Upgrade Net is a free, independent information and assistance desk. We don&apos;t
-              charge households for phone consultations, plan explanations, or help with paperwork —
-              so there is no purchase from us to refund.
-            </p>
-            <p>
-              If you were charged for internet, cable, TV or streaming service, that charge was
-              billed by the provider you signed up with, not by Upgrade Net. Billing disputes,
-              cancellations and refund requests for an actual service need to go directly to that
-              provider — they hold your account and contract, and only they can process a refund or
-              credit.
-            </p>
-            <p>
-              If you&apos;re not sure who to contact or how to raise a billing issue with your
-              provider, an advisor can help you figure out the right next step.
-            </p>
-            <div>
-              <a href="tel:+18552024908" className="btn-accent">
-                (855) 202-4908
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    <LegalPage
+      id="refund"
+      index="12"
+      title="Refund policy"
+      lead="Refund requests can be submitted within 7 to 15 days of service purchase, depending on the type of assistance provided. The details below explain how eligibility works."
+      sections={SECTIONS}
+    />
   );
 }

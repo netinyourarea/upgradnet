@@ -1,10 +1,13 @@
-﻿import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+
+import { CallButton, DISCLOSURE, FOOTER_NOTE, PHONE_DISPLAY, PHONE_HREF } from "./blocks";
 
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/internet", label: "Internet" },
-  { to: "/cable-tv", label: "Cable & TV" },
+  { to: "/outages", label: "Outages" },
+  { to: "/cable-tv", label: "Cable TV" },
   { to: "/streaming", label: "Streaming" },
   { to: "/wifi", label: "Wi-Fi" },
   { to: "/about", label: "About" },
@@ -31,7 +34,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 xl:flex xl:gap-6">
           {NAV.slice(1).map((item) => (
             <Link
               key={item.to}
@@ -45,15 +48,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href="tel:+18552024908" className="btn-accent hidden sm:inline-flex">
-            (855) 202-4908
-          </a>
+          <CallButton className="btn-accent hidden px-5 py-3 sm:inline-flex">
+            Get assistance
+          </CallButton>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="border border-line-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.18em] lg:hidden"
+            className="border border-line-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.18em] xl:hidden"
           >
             {open ? "Close" : "Menu"}
           </button>
@@ -61,7 +64,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="rule-t bg-ivory lg:hidden">
+        <div className="rule-t bg-ivory xl:hidden">
           <ul className="shell divide-y divide-line">
             {NAV.map((item) => (
               <li key={item.to}>
@@ -76,6 +79,9 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
+          <div className="shell pb-6">
+            <CallButton className="btn-accent w-full justify-center">Get assistance</CallButton>
+          </div>
         </div>
       ) : null}
     </header>
@@ -88,26 +94,26 @@ export function SiteFooter() {
       <div className="shell grid gap-12 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5">
           <p className="font-display text-4xl font-extrabold uppercase leading-[0.9] md:text-5xl">
-            Talk to a <span className="text-accent">connectivity</span> advisor
+            Clear answers for your <span className="text-accent">connection</span>
           </p>
           <p className="mt-6 max-w-md text-sm text-muted-foreground">
-            Upgrade Net is an independent information and assistance desk. We help households
-            explore and understand internet, cable, TV and streaming options available at their
-            address. We do not sell services on behalf of any provider.
+            Upgrade Net is an independent third-party assistance resource helping households
+            understand internet connectivity, cable television, streaming and home Wi-Fi.
           </p>
-          <a href="tel:+18552024908" className="btn-accent mt-8">
-            (855) 202-4908
+          <a href={PHONE_HREF} className="btn-accent mt-8">
+            {PHONE_DISPLAY}
           </a>
         </div>
 
-        <nav aria-label="Services" className="md:col-span-2 md:col-start-7">
-          <p className="label-mono">Services</p>
+        <nav aria-label="Guides" className="md:col-span-2 md:col-start-7">
+          <p className="label-mono">Guides</p>
           <ul className="mt-5 space-y-3 text-sm">
             {[
-              { to: "/internet", label: "Internet" },
-              { to: "/cable-tv", label: "Cable & TV" },
+              { to: "/internet", label: "Internet connection" },
+              { to: "/outages", label: "Outages & restoration" },
+              { to: "/cable-tv", label: "Cable TV" },
               { to: "/streaming", label: "Streaming" },
-              { to: "/wifi", label: "Wi-Fi" },
+              { to: "/wifi", label: "Home Wi-Fi" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="link-underline">
@@ -125,7 +131,6 @@ export function SiteFooter() {
               { to: "/about", label: "About" },
               { to: "/faq", label: "FAQ" },
               { to: "/contact", label: "Contact" },
-              { to: "/disclaimer", label: "Disclaimer" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="link-underline">
@@ -142,7 +147,9 @@ export function SiteFooter() {
             {[
               { to: "/privacy-policy", label: "Privacy Policy" },
               { to: "/terms", label: "Terms & Conditions" },
+              { to: "/disclaimer", label: "Disclaimer" },
               { to: "/refund-policy", label: "Refund Policy" },
+              { to: "/advertising-disclosure", label: "Advertising Disclosure" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="link-underline">
@@ -155,14 +162,12 @@ export function SiteFooter() {
       </div>
 
       <div className="rule-t">
-        <div className="shell flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between">
-          <p className="label-mono">Â© {new Date().getFullYear()} Upgrade Net Connectivity Desk</p>
-          <p className="max-w-2xl text-xs text-muted-foreground">
-            Third-party disclosure: Upgrade Net is not affiliated with, endorsed by, or acting on
-            behalf of any internet, cable, TV or streaming provider. All brand names referenced
-            remain the property of their respective owners. Availability, features and pricing vary
-            by address and change over time.
-          </p>
+        <div className="shell flex flex-col gap-4 py-6 md:flex-row md:items-start md:justify-between md:gap-12">
+          <p className="label-mono shrink-0">© {new Date().getFullYear()} Upgrade Net</p>
+          <div className="max-w-3xl space-y-2 text-xs text-muted-foreground">
+            <p className="font-bold text-foreground">{FOOTER_NOTE}</p>
+            <p>{DISCLOSURE}</p>
+          </div>
         </div>
       </div>
     </footer>
@@ -195,33 +200,52 @@ export function PageIntro({
   );
 }
 
-export function FaqList({ items }: { items: { q: string; a: string }[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+export function FaqList({
+  items,
+  defaultOpen = 0,
+  idPrefix = "faq",
+}: {
+  items: readonly { q: string; a: string }[];
+  defaultOpen?: number | null;
+  idPrefix?: string;
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpen);
   return (
     <ul className="rule-t">
       {items.map((item, i) => {
         const open = openIndex === i;
+        const panelId = `${idPrefix}-panel-${i}`;
         return (
           <li key={item.q} className="rule-b">
-            <button
-              type="button"
-              aria-expanded={open}
-              onClick={() => setOpenIndex(open ? null : i)}
-              className="flex w-full items-start justify-between gap-8 py-6 text-left transition-colors hover:text-accent"
-            >
-              <span className="flex gap-6">
-                <span className="label-mono pt-2">{String(i + 1).padStart(2, "0")}</span>
-                <span className="font-display text-xl font-extrabold uppercase md:text-2xl">
-                  {item.q}
+            <h3 className="!text-base !leading-snug">
+              <button
+                type="button"
+                id={`${idPrefix}-btn-${i}`}
+                aria-expanded={open}
+                aria-controls={panelId}
+                onClick={() => setOpenIndex(open ? null : i)}
+                className="flex w-full items-start justify-between gap-6 py-5 text-left transition-colors hover:text-accent md:gap-8 md:py-6"
+              >
+                <span className="flex gap-4 md:gap-6">
+                  <span className="label-mono pt-1.5">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-lg font-extrabold uppercase leading-[1.05] md:text-xl">
+                    {item.q}
+                  </span>
                 </span>
-              </span>
-              <span className="label-mono pt-2">{open ? "—" : "+"}</span>
-            </button>
+                <span aria-hidden className="label-mono pt-1.5">
+                  {open ? "—" : "+"}
+                </span>
+              </button>
+            </h3>
             <div
-              className="grid overflow-hidden transition-all duration-500"
-              style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+              id={panelId}
+              role="region"
+              aria-labelledby={`${idPrefix}-btn-${i}`}
+              inert={!open}
+              className="grid overflow-hidden transition-[grid-template-rows,opacity] duration-500"
+              style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
             >
-              <p className="min-h-0 max-w-3xl pb-7 pl-0 text-sm text-muted-foreground md:pl-[4.5rem]">
+              <p className="min-h-0 max-w-3xl pb-7 text-sm text-muted-foreground md:pl-[3.25rem]">
                 {item.a}
               </p>
             </div>

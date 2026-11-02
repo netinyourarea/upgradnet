@@ -1,187 +1,339 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Parallax, Reveal } from "../components/motion";
-import { PageIntro } from "../components/site-chrome";
+import {
+  Banner,
+  Bullets,
+  CallButton,
+  FactGrid,
+  GuideCTA,
+  GuideHero,
+  OnThisPage,
+  Related,
+  Section,
+  Steps,
+} from "../components/blocks";
 import { usePageMeta } from "../hooks/use-page-meta";
 import cable from "../assets/cable.jpg";
 import streamingImg from "../assets/streaming.jpg";
-import compare from "../assets/compare.jpg";
 
 export const Route = createFileRoute("/cable-tv")({
-  component: CablePage,
+  component: CableTvPage,
 });
 
-const LINEUP = [
+const NOT_WORKING = [
   {
-    n: "01",
-    title: "Base tier",
-    body: "Local broadcast and a core set of national channels. Often the required foundation before any add-on package.",
+    t: "Wrong input selected",
+    d: "If the TV is set to a different input (HDMI 2, for instance), it will show a blank or “No Signal” screen even when the cable box is fine.",
   },
   {
-    n: "02",
-    title: "Expanded tier",
-    body: "Entertainment, lifestyle and news networks. This is where most households land, and where price differences appear.",
+    t: "Loose or damaged cables",
+    d: "A coaxial or HDMI cable that has worked loose or been damaged can lead to missing channels or a missing picture.",
   },
   {
-    n: "03",
-    title: "Sports & regional",
-    body: "Regional sports networks are frequently billed as a separate line item rather than included in the advertised figure.",
+    t: "Set-top box needs a restart",
+    d: "Cable boxes are small computers and can freeze or lose their channel information.",
   },
   {
-    n: "04",
-    title: "Premium add-ons",
-    body: "Film and original-series networks, sold monthly. These are the easiest items to add and the easiest to forget.",
+    t: "Signal interruption",
+    d: "A local fault, maintenance or an outage with your cable provider can remove channels or the whole service.",
+  },
+  {
+    t: "Channel package or account change",
+    d: "Channels depend on your subscription.",
   },
 ] as const;
 
-const EQUIPMENT = [
-  ["Set-top box", "One per television in most cable arrangements; usually rented monthly."],
-  ["DVR storage", "Hours of recording and simultaneous record streams differ widely by package."],
-  ["CableCARD / app", "Some services now stream to an app instead of a physical box."],
-  ["In-home wiring", "Splitter quality and cable age can quietly reduce picture stability."],
+const INTERRUPTIONS = [
+  {
+    t: "Cable or connector wear",
+    d: "Old, bent or corroded coaxial cables and loose connectors can weaken the signal.",
+  },
+  {
+    t: "Splitters and extra connections",
+    d: "Splitters divide the signal.",
+  },
+  { t: "Weather", d: "Storms and water can affect outdoor cables and connections." },
+  {
+    t: "Maintenance or network faults",
+    d: "Work on the provider's network, or equipment failures within it, can cause short or long interruptions.",
+  },
+  {
+    t: "Power cuts",
+    d: "Both your equipment and parts of the provider's network need electricity.",
+  },
+  {
+    t: "Interference near cables",
+    d: "Poorly shielded cables running beside power cables or electronics can pick up noise.",
+  },
 ] as const;
 
-function CablePage() {
+const NO_SIGNAL = [
+  {
+    t: "Check the TV input source",
+    d: "Use the TV remote's Input or Source button and select the one your cable box is plugged into, such as HDMI 1 or HDMI 2.",
+  },
+  {
+    t: "Confirm the TV and cable box are powered on",
+    d: "Check the box's display or lights.",
+  },
+  {
+    t: "Check HDMI and coaxial cable connections",
+    d: "Make sure the HDMI cable is firmly connected at both ends and the coaxial cable is finger-tight at the box and the wall outlet.",
+  },
+  {
+    t: "Try a different HDMI port or cable",
+    d: "A faulty port or cable can be the reason.",
+  },
+  {
+    t: "Restart the set-top box following the manufacturer's instructions",
+    d: "Many boxes should be powered off for about 30 seconds before being switched on again.",
+  },
+  {
+    t: "Check for a provider notice",
+    d: "Use your phone to look at the provider's website or app to see whether there is a service interruption in your area.",
+  },
+] as const;
+
+const SOME_CHANNELS = [
+  {
+    t: "Channel is not in your package",
+    d: "Some channels require a specific subscription.",
+  },
+  {
+    t: "Provider-side issue with that channel",
+    d: "Occasionally the problem is with a single channel's feed, not with your home equipment.",
+  },
+  {
+    t: "Set-top box needs updating",
+    d: "The box may need to refresh its channel list or software.",
+  },
+  {
+    t: "Weak signal on certain frequencies",
+    d: "Some channels use different frequencies, so a poor cable or connector can affect some and not others.",
+  },
+  {
+    t: "Parental controls or channel lock",
+    d: "Settings can hide or block channels.",
+  },
+] as const;
+
+const CONNECTIONS = [
+  {
+    t: "Look at the wall outlet",
+    d: "Make sure the coaxial cable is screwed in finger-tight and the outlet itself is not loose or damaged.",
+  },
+  {
+    t: "Follow the cable to the box",
+    d: "Check for kinks, cuts or crushed sections.",
+  },
+  {
+    t: "Check the connection at the box",
+    d: "The connector should sit straight and snug at the “Cable In” port.",
+  },
+  {
+    t: "Check HDMI to the TV",
+    d: "Push the HDMI plug in fully at both ends and make sure the right input is selected.",
+  },
+  {
+    t: "Limit splitters",
+    d: "If you have a splitter, try connecting the box to the cable more directly to see whether the picture improves.",
+  },
+  {
+    t: "Do not open equipment",
+    d: "Do not attempt to open the provider's equipment or work on cables outside the home.",
+  },
+] as const;
+
+const BOX = [
+  {
+    t: "Frozen or unresponsive box",
+    d: "If the remote does nothing and the display is stuck, a power restart as recommended by the manufacturer often helps.",
+  },
+  {
+    t: "Box stuck on startup",
+    d: "It may need several minutes to boot and download channel information.",
+  },
+  {
+    t: "No power or no lights",
+    d: "Check the power cable and the outlet it uses, and try a different outlet.",
+  },
+  {
+    t: "Picture freezes or pixelates",
+    d: "This can be a signal quality issue (cables, connections) or a fault with the box itself.",
+  },
+  {
+    t: "Remote not working",
+    d: "Replace batteries and make sure nothing blocks the box's sensor.",
+  },
+  {
+    t: "Box overheating",
+    d: "Place it where air can circulate, not inside a closed cabinet or under other equipment.",
+  },
+] as const;
+
+const PROVIDER = [
+  {
+    t: "No signal after the checks above",
+    d: "If cables, input and a restart have not helped, the box or the line may need attention from your provider.",
+  },
+  {
+    t: "Channels missing across the board",
+    d: "Especially if neighbors on the same provider have the same issue.",
+  },
+  {
+    t: "Equipment seems faulty",
+    d: "Provider equipment (cable boxes, modems) is typically supplied by the provider.",
+  },
+  { t: "Damaged outdoor cables", d: "Do not touch them." },
+  {
+    t: "Account or package concerns",
+    d: "Only the provider can see your subscription, billing status or channel package.",
+  },
+] as const;
+
+const SECTIONS = [
+  { id: "channels", label: "Channels not working" },
+  { id: "interruptions", label: "Signal interruptions" },
+  { id: "no-signal", label: "No signal" },
+  { id: "some-channels", label: "Some channels" },
+  { id: "connections", label: "Cable connections" },
+  { id: "set-top-box", label: "Set-top box" },
+  { id: "provider", label: "Contact provider" },
+] as const;
+
+function CableTvPage() {
   usePageMeta({
-    title: "Cable & TV Services Explained — Upgrade Net",
+    title: "Cable TV No Signal or Channels Missing? Guide | Upgrade Net",
     description:
-      "Understand cable and TV service structures: channel tiers, set-top equipment, DVR storage, regional sports fees and IPTV alternatives.",
+      "Troubleshoot cable TV problems: what “No Signal” means, why channels go missing, how to check connections and set-top boxes, and when to contact your cable provider.",
+    path: "/cable-tv",
   });
 
   return (
     <>
-      {/* Dark cinematic intro — distinct from other pages */}
-      <section className="relative bg-ink text-accent-foreground">
-        <div className="absolute inset-0">
-          <img
-            src={cable}
-            alt="Dark home cinema room with warm wall lighting and a large screen"
-            width={1600}
-            height={1008}
-            className="img-cover opacity-45"
-          />
-        </div>
-        <div className="shell relative grid gap-8 py-24 md:grid-cols-12 md:py-36">
-          <p className="label-mono !text-beige md:col-span-3">02 / Cable &amp; TV</p>
-          <div className="md:col-span-9">
-            <h1 className="display-lg">Television, itemised</h1>
-            <p className="mt-8 max-w-2xl text-beige">
-              Cable and TV pricing is rarely one number. We walk through tiers, equipment rental,
-              regional fees and app-based alternatives so the bill holds no surprises.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Lineup — numbered grid 2x2 with thin borders */}
-      <section aria-labelledby="lineup" className="shell py-20 md:py-28">
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-6">
-          <h2 id="lineup" className="display-lg max-w-lg">
-            How line-ups are stacked
-          </h2>
-          <p className="label-mono">Four tiers</p>
-        </div>
-        <div className="grid md:grid-cols-2">
-          {LINEUP.map((item, i) => (
-            <Reveal key={item.n} delay={i * 90}>
-              <article className="border-b border-line px-0 py-10 md:px-10 md:odd:border-r">
-                <p className="num-oversize text-beige">{item.n}</p>
-                <h3 className="mt-6 text-2xl font-extrabold uppercase md:text-3xl">{item.title}</h3>
-                <p className="mt-4 max-w-md text-sm text-muted-foreground">{item.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Equipment split */}
-      <section aria-labelledby="equipment" className="rule-t bg-ivory">
-        <div className="shell grid gap-14 py-20 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-5">
-            <div className="aspect-[4/5] overflow-hidden">
-              <img
-                src={streamingImg}
-                alt="Family watching television in a warmly lit living room"
-                loading="lazy"
-                width={1920}
-                height={1008}
-                className="img-cover"
-              />
-            </div>
-          </div>
-          <div className="md:col-span-7">
-            <p className="label-mono">Equipment</p>
-            <h2 id="equipment" className="display-lg mt-6">
-              The hardware behind the picture
-            </h2>
-            <dl className="mt-10 border-t border-line">
-              {EQUIPMENT.map(([term, desc]) => (
-                <div key={term} className="grid gap-3 border-b border-line py-6 md:grid-cols-3">
-                  <dt className="font-display text-lg font-extrabold uppercase">{term}</dt>
-                  <dd className="md:col-span-2 text-sm text-muted-foreground">{desc}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison band */}
-      <section aria-labelledby="vs" className="shell py-20 md:py-24">
-        <h2 id="vs" className="display-lg max-w-2xl">
-          Cable, IPTV or streaming only?
-        </h2>
-        <div className="mt-12 grid gap-10 md:grid-cols-3">
-          {[
-            {
-              k: "Cable",
-              v: "Reliable live viewing, familiar guide, physical equipment and typically a contract term.",
-            },
-            {
-              k: "IPTV",
-              v: "Delivered over your internet line with an app-first experience and fewer boxes.",
-            },
-            {
-              k: "Streaming only",
-              v: "Lowest equipment footprint, but live sports and local channels need checking first.",
-            },
-          ].map((c, i) => (
-            <Reveal key={c.k} delay={i * 110}>
-              <div className="border-t-2 border-ink pt-6">
-                <p className="font-display text-2xl font-extrabold uppercase">{c.k}</p>
-                <p className="mt-4 text-sm text-muted-foreground">{c.v}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="rule-t bg-ink text-accent-foreground">
-        <div className="shell grid items-center gap-10 py-16 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Parallax className="aspect-[7/5]" strength={22}>
-              <img
-                src={compare}
-                alt="Hands holding a tablet reviewing service package options"
-                loading="lazy"
-                width={1408}
-                height={1008}
-                className="img-cover"
-              />
-            </Parallax>
-          </div>
-          <div className="md:col-span-7">
-            <h2 className="display-lg">Bring us your current bill</h2>
-            <p className="mt-6 max-w-xl text-beige">
-              We will read it line by line with you and explain what each charge represents. No
-              recommendation is presented as the cheapest or best — only what the terms say.
-            </p>
-            <a href="tel:+18552024908" className="btn-accent mt-8">
-              (855) 202-4908
+      <GuideHero
+        variant="split-reverse"
+        index="03"
+        eyebrow="Cable TV guide"
+        title="Understand your cable TV connection."
+        lead="When channels disappear or the screen says “No Signal”, the cause may be in your living room, your equipment or your provider's network. This guide helps you tell them apart, with practical checks you can do yourself."
+        image={cable}
+        alt="Dark home cinema room with warm wall lighting and a large screen at the front"
+        caption="Fig. 01 — A television is only the last link in the chain."
+        actions={
+          <>
+            <CallButton>Get assistance</CallButton>
+            <a href="#no-signal" className="btn-outline">
+              Fix “No Signal”
             </a>
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
+      <div className="shell py-8">
+        <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+          Upgrade Net does not provide television channels or operate cable networks. Channels,
+          signal and equipment come from your cable TV provider.
+        </p>
+      </div>
+      <OnThisPage items={SECTIONS} />
+
+      <Section
+        id="channels"
+        n="01"
+        kicker="Common causes"
+        title="Why are my TV channels not working?"
+      >
+        <FactGrid items={NOT_WORKING} cols={2} />
+      </Section>
+
+      <Section
+        id="interruptions"
+        n="02"
+        kicker="Signal"
+        title="What causes cable signal interruptions?"
+        tone="ivory"
+      >
+        <Bullets items={INTERRUPTIONS} />
+      </Section>
+
+      <Section
+        id="no-signal"
+        n="03"
+        kicker="Step by step"
+        title="What to do when your television displays No Signal"
+      >
+        <Steps items={NO_SIGNAL} />
+      </Section>
+
+      <Banner
+        image={streamingImg}
+        alt="Family watching a film on a large television in a warmly lit living room"
+        label="Fig. 02 — Living room, evening"
+      >
+        Most “No Signal” screens are solved at the TV, not the street.
+      </Banner>
+
+      <Section
+        id="some-channels"
+        n="04"
+        kicker="Partial failure"
+        title="Why do some channels work while others do not?"
+      >
+        <FactGrid items={SOME_CHANNELS} cols={2} />
+      </Section>
+
+      <Section
+        id="connections"
+        n="05"
+        kicker="Inspection"
+        title="How to check cable connections"
+        tone="ivory"
+      >
+        <Bullets items={CONNECTIONS} />
+      </Section>
+
+      <Section
+        id="set-top-box"
+        n="06"
+        kicker="Equipment"
+        title="Understanding set-top box problems"
+      >
+        <FactGrid items={BOX} cols={3} />
+      </Section>
+
+      <Section
+        id="provider"
+        n="07"
+        kicker="Escalation"
+        title="When to contact your cable TV provider"
+        tone="ivory"
+      >
+        <Bullets items={PROVIDER} />
+      </Section>
+
+      <Related
+        items={[
+          {
+            to: "/streaming",
+            label: "Streaming",
+            note: "When the picture comes over the internet instead of a cable box.",
+          },
+          {
+            to: "/outages",
+            label: "Outages",
+            note: "How to tell a service interruption from an equipment problem.",
+          },
+          {
+            to: "/faq",
+            label: "All questions",
+            note: "Answers on internet, cable TV, streaming, Wi-Fi and Upgrade Net.",
+          },
+        ]}
+      />
+      <GuideCTA
+        title="Television still not working?"
+        text="If you have gone through these checks and are unsure whether the issue is your equipment or your provider's service, our independent assistance team can talk it through with you."
+      />
     </>
   );
 }

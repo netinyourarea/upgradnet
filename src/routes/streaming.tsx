@@ -1,7 +1,19 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Counter, Parallax, Reveal } from "../components/motion";
-import { PageIntro } from "../components/site-chrome";
+import {
+  Banner,
+  Bullets,
+  CallButton,
+  Compare,
+  FactGrid,
+  GuideCTA,
+  GuideHero,
+  OnThisPage,
+  Prose,
+  Related,
+  Section,
+  Steps,
+} from "../components/blocks";
 import { usePageMeta } from "../hooks/use-page-meta";
 import streamingImg from "../assets/streaming.jpg";
 import cable from "../assets/cable.jpg";
@@ -11,159 +23,335 @@ export const Route = createFileRoute("/streaming")({
   component: StreamingPage,
 });
 
-const BUDGET = [
-  { label: "SD stream", mbps: "3" },
-  { label: "HD stream (1080p)", mbps: "6" },
-  { label: "4K HDR stream", mbps: "25" },
-  { label: "Cloud game session", mbps: "35" },
-  { label: "Video call (HD)", mbps: "4" },
+const BUFFERING = [
+  {
+    t: "Unstable or slow connection",
+    d: "Video is delivered in small pieces just ahead of what you watch.",
+  },
+  {
+    t: "Weak Wi-Fi at the TV or device",
+    d: "A streaming device far from the router, or behind walls, may receive a poor signal even when the internet connection is fine.",
+  },
+  {
+    t: "Other activity on the network",
+    d: "Downloads, backups, video calls and other streams compete for the same connection.",
+  },
+  {
+    t: "Device limits",
+    d: "Older TVs and streaming sticks can struggle to decode high-quality video or run heavy apps.",
+  },
+  {
+    t: "Busy network periods",
+    d: "Shared parts of a provider's network can feel slower in the evening, when many households are online.",
+  },
+  {
+    t: "The streaming platform",
+    d: "Sometimes the platform itself is busy or experiencing a problem.",
+  },
+] as const;
+
+const QUALITY = [
+  {
+    t: "Standard definition video",
+    d: "Works on modest connections and is the level many apps fall back to when the connection struggles.",
+  },
+  { t: "High definition (HD)", d: "Needs a steadier, faster connection than standard definition." },
+  {
+    t: "4K / Ultra HD",
+    d: "Typically requires the most, and platforms often publish recommended speeds for it in their help pages.",
+  },
+  {
+    t: "Several streams at once",
+    d: "Each stream needs its own share of the connection, so add them together rather than judging one stream alone.",
+  },
+] as const;
+
+const CHANGING = [
+  {
+    t: "Adaptive streaming",
+    d: "Most apps constantly measure your connection and adjust quality to avoid stopping.",
+  },
+  {
+    t: "Fluctuating Wi-Fi",
+    d: "A signal that varies from moment to moment makes quality move up and down.",
+  },
+  {
+    t: "Shared bandwidth",
+    d: "When someone else starts a download or call, your stream may step down.",
+  },
+  {
+    t: "Platform settings",
+    d: "Many apps have quality or data-saver settings that limit or change the resolution, so check the app's playback settings.",
+  },
+] as const;
+
+const NOT_LOADING = [
+  {
+    t: "Check whether other apps and websites work",
+    d: "If nothing loads, the issue is your connection.",
+  },
+  {
+    t: "Restart the app, then the device",
+    d: "Close the app fully and reopen it.",
+  },
+  {
+    t: "Check that the device is online",
+    d: "Make sure the device is connected to the right Wi-Fi network and still has internet access.",
+  },
+  {
+    t: "Check the date, time and software",
+    d: "An incorrect date or an outdated app or system version can stop an app from connecting.",
+  },
+  {
+    t: "Check the platform's own status",
+    d: "Platforms often have a status page or social media account that reports known issues.",
+  },
+  {
+    t: "Reinstall the app if supported",
+    d: "Removing and reinstalling can clear corrupted data.",
+  },
+] as const;
+
+const IMPROVE = [
+  {
+    t: "Move the router or streaming device closer, or remove obstacles",
+    d: "Even a short distance and fewer walls can steady the signal.",
+  },
+  {
+    t: "Use Ethernet where possible",
+    d: "A cable removes Wi-Fi variation for TVs, consoles and streaming boxes.",
+  },
+  {
+    t: "Pause large downloads during viewing",
+    d: "Updates and backups can take much of the capacity.",
+  },
+  {
+    t: "Reduce the number of simultaneous high-quality streams",
+    d: "Lowering the quality setting on one device frees capacity for others.",
+  },
+  { t: "Keep apps and device software up to date", d: "Updates often fix playback problems." },
+  {
+    t: "Restart your router occasionally",
+    d: "Follow the manufacturer's instructions.",
+  },
+] as const;
+
+const WHEN_PLATFORM = [
+  { t: "Only one app has problems", d: "Other apps stream normally." },
+  {
+    t: "The same problem appears on several of your devices, but only in that app",
+    d: "This points away from a single device.",
+  },
+  {
+    t: "Specific titles fail",
+    d: "The issue might be with the content or the platform's servers.",
+  },
+  {
+    t: "Error messages mention the service",
+    d: "Look up the exact message in the platform's help pages.",
+  },
+  {
+    t: "Reports of a platform outage",
+    d: "The platform's status page or own channels may confirm this.",
+  },
+] as const;
+
+const SECTIONS = [
+  { id: "buffering", label: "Buffering" },
+  { id: "speed", label: "Speed" },
+  { id: "quality", label: "Changing quality" },
+  { id: "not-loading", label: "Apps not loading" },
+  { id: "multiple-devices", label: "Multiple devices" },
+  { id: "stability", label: "Stability" },
+  { id: "wifi-vs-ethernet", label: "Wi-Fi vs Ethernet" },
+  { id: "platform", label: "Platform issues" },
 ] as const;
 
 function StreamingPage() {
   usePageMeta({
-    title: "Streaming & Bandwidth Planning — Upgrade Net",
+    title: "Streaming Buffering Problems and How to Fix Them | Upgrade Net",
     description:
-      "Plan streaming for a multi-screen household: bandwidth per stream, 4K requirements, buffering causes and device placement, explained independently.",
+      "Why does streaming keep buffering? Learn what affects video quality, how multiple devices share your connection, Wi-Fi versus Ethernet and when the platform is the problem.",
+    path: "/streaming",
   });
 
   return (
     <>
-      <PageIntro
-        index="03"
-        eyebrow="Streaming"
-        title="Plan the evening, not just the plan"
-        lead="Streaming is the most common reason a household outgrows its connection. Here is how to estimate what your evenings actually demand, and what to fix when playback stutters."
+      <GuideHero
+        variant="banner"
+        index="04"
+        eyebrow="Streaming guide"
+        title="Smoother streaming starts with understanding your connection."
+        lead="Streaming performance depends on your internet connection, your device, the app, the video quality you choose and the streaming platform itself. Understanding which one is the weak link is the first step to fixing it."
+        image={streamingImg}
+        alt="Family watching a film on a large television in a living room at dusk"
+        caption="Fig. 01 — A good evening in front of the screen depends on a chain of small links."
+        actions={<CallButton>Get assistance</CallButton>}
       />
+      <div className="shell py-8">
+        <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+          Upgrade Net cannot guarantee specific streaming performance. Results depend on your
+          connection, devices and the platforms you use.
+        </p>
+      </div>
+      <OnThisPage items={SECTIONS} />
 
-      {/* Full-bleed cinematic band with overlay caption */}
-      <section className="relative rule-t">
-        <Parallax className="h-[58vh] min-h-[22rem]" strength={45}>
-          <img
-            src={streamingImg}
-            alt="Family watching a film on a large screen in a warm living room at dusk"
-            width={1920}
-            height={1008}
-            className="img-cover"
-          />
-        </Parallax>
-        <div className="shell -mt-px rule-t grid gap-6 bg-background py-10 md:grid-cols-12">
-          <p className="label-mono md:col-span-3">Fig. 03 — Peak hours</p>
-          <p className="md:col-span-9 text-lg">
-            Between 8pm and 11pm most residential networks carry their heaviest load. A line that
-            feels effortless at noon can feel different at nine.
-          </p>
-        </div>
-      </section>
+      <Section
+        id="buffering"
+        n="01"
+        kicker="Common causes"
+        title="Why does streaming keep buffering?"
+      >
+        <FactGrid items={BUFFERING} cols={2} />
+      </Section>
 
-      {/* Bandwidth budget — horizontal bars from type, no cards */}
-      <section aria-labelledby="budget" className="shell py-20 md:py-28">
-        <div className="grid gap-8 md:grid-cols-12">
-          <h2 id="budget" className="display-lg md:col-span-6">
-            A rough bandwidth budget
-          </h2>
-          <p className="md:col-span-5 md:col-start-8 text-muted-foreground">
-            Add up what runs simultaneously, then leave headroom. These figures are typical
-            reference values, not guarantees — providers and apps vary.
-          </p>
-        </div>
-        <ul className="mt-14 border-t border-line">
-          {BUDGET.map((row, i) => (
-            <li key={row.label} className="rule-b">
-              <Reveal delay={i * 80}>
-                <div className="flex items-baseline justify-between gap-6 py-7">
-                  <span className="font-display text-xl font-extrabold uppercase md:text-3xl">
-                    {row.label}
-                  </span>
-                  <span className="label-mono !text-foreground shrink-0">≈ {row.mbps} Mbps</span>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <Section
+        id="speed"
+        n="02"
+        kicker="Planning"
+        title="What internet speed is suitable for streaming?"
+        tone="ivory"
+      >
+        <Bullets items={QUALITY} />
+      </Section>
 
-      {/* Typographic stat row */}
-      <section className="rule-t bg-beige">
-        <div className="shell grid gap-10 py-16 md:grid-cols-3 md:py-20">
-          {[
-            { v: 4, s: "", k: "Concurrent 4K streams a gigabit line can typically carry" },
-            { v: 68, s: "%", k: "Of buffering complaints we review trace to Wi-Fi, not the line" },
-            { v: 2, s: " min", k: "Typical time to test a wired connection and rule it out" },
-          ].map((s) => (
-            <div key={s.k} className="border-t-2 border-ink pt-6">
-              <p className="num-oversize">
-                <Counter to={s.v} suffix={s.s} />
-              </p>
-              <p className="mt-4 max-w-xs text-sm text-charcoal">{s.k}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section id="quality" n="03" kicker="Picture" title="Why does video quality keep changing?">
+        <FactGrid items={CHANGING} cols={2} />
+      </Section>
 
-      {/* Troubleshooting split with cinematic image */}
-      <section aria-labelledby="fixes" className="rule-t">
-        <div className="shell grid md:grid-cols-2">
-          <Parallax className="aspect-[4/3] md:aspect-auto md:min-h-[36rem]" strength={30}>
-            <img
-              src={cable}
-              alt="Dark cinema room with warm lighting and a projected film"
-              loading="lazy"
-              width={1600}
-              height={1008}
-              className="img-cover"
-            />
-          </Parallax>
-          <div className="flex flex-col justify-center py-14 md:py-20 md:pl-14">
-            <p className="label-mono">Checklist / Buffering</p>
-            <h2 id="fixes" className="display-lg mt-6">
-              Five things to check before blaming the plan
-            </h2>
-            <ol className="mt-10 border-t border-line">
-              {[
-                "Test one device on a cable — if it is clean, the issue is wireless.",
-                "Move the router off the floor and out of cabinets.",
-                "Check whether an app is defaulting to the highest quality tier.",
-                "Look for a second network on the same congested channel.",
-                "Confirm nothing large is uploading in the background.",
-              ].map((t, i) => (
-                <li key={t} className="flex gap-6 border-b border-line py-5">
-                  <span className="label-mono pt-1">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="text-sm text-muted-foreground">{t}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+      <Banner
+        image={cable}
+        alt="Dark home cinema room with warm wall lighting and a large screen"
+        label="Fig. 02 — Quality follows the connection"
+      >
+        Most apps trade picture quality for continuity. That is by design.
+      </Banner>
 
-      <section className="rule-t">
-        <div className="shell grid items-end gap-10 py-20 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <h2 className="display-lg">
-              Streaming, gaming, <span className="text-accent">both.</span>
-            </h2>
-            <p className="mt-6 max-w-xl text-muted-foreground">
-              If someone streams while someone else plays online, the household needs headroom and a
-              router that handles both gracefully. We will explain the trade-offs.
+      <Section
+        id="not-loading"
+        n="04"
+        kicker="Troubleshooting"
+        title="Why are streaming applications not loading?"
+      >
+        <Steps items={NOT_LOADING} />
+      </Section>
+
+      <Section
+        id="multiple-devices"
+        n="05"
+        kicker="Sharing"
+        title="How multiple devices affect streaming"
+        tone="ivory"
+      >
+        <div className="grid gap-10 lg:grid-cols-5">
+          <Prose className="lg:col-span-3">
+            <p>
+              Your internet connection is shared between everything using it at the same time. Two
+              people streaming in different rooms, a game downloading in the background, a video
+              call in the study and a handful of smart devices all take a share.
             </p>
-            <a href="tel:+18552024908" className="btn-accent mt-8">
-              (855) 202-4908
-            </a>
-          </div>
-          <div className="md:col-span-5">
-            <div className="aspect-square overflow-hidden">
-              <img
-                src={gaming}
-                alt="Gaming setup with monitor and headset in warm amber light"
-                loading="lazy"
-                width={1200}
-                height={1200}
-                className="img-cover"
-              />
-            </div>
-          </div>
+            <p>
+              When the combined demand is more than your connection can comfortably deliver, the
+              streams fall back in quality or stall. Wi-Fi adds another constraint: all wireless
+              devices share the airtime of the same router.
+            </p>
+            <p>
+              If your household is struggling, look at what else is running before blaming the
+              streaming app, and consider our{" "}
+              <Link to="/wifi" className="underline decoration-accent underline-offset-4">
+                home Wi-Fi guide
+              </Link>
+              .
+            </p>
+          </Prose>
+          <img
+            src={gaming}
+            alt="Gaming desk with a monitor and headset in warm amber light"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="aspect-[4/3] w-full object-cover lg:col-span-2"
+          />
         </div>
-      </section>
+      </Section>
+
+      <Section
+        id="stability"
+        n="06"
+        kicker="Practical advice"
+        title="How to improve streaming stability"
+      >
+        <Bullets items={IMPROVE} />
+      </Section>
+
+      <Section
+        id="wifi-vs-ethernet"
+        n="07"
+        kicker="Connection type"
+        title="Wi-Fi versus Ethernet for streaming"
+        tone="ivory"
+      >
+        <Compare
+          left={{
+            title: "Wi-Fi",
+            items: [
+              "Convenient and needs no cables.",
+              "Signal weakens with distance and obstacles.",
+              "Affected by interference and other wireless devices.",
+              "Often fine for phones, tablets and nearby TVs.",
+              "5 GHz is typically faster but has a shorter range than 2.4 GHz.",
+            ],
+          }}
+          right={{
+            title: "Ethernet",
+            items: [
+              "A physical cable from router to device.",
+              "Not affected by wireless interference or distance within the home.",
+              "Usually more consistent for TVs, consoles and streaming boxes.",
+              "Needs a cable run and a device with an Ethernet port.",
+              "A good fix if one TV constantly buffers over Wi-Fi.",
+            ],
+          }}
+          caption="Neither is “better” in every home. Ethernet simply removes the wireless variable when stability matters most."
+        />
+      </Section>
+
+      <Section
+        id="platform"
+        n="08"
+        kicker="Not your connection"
+        title="When the problem may be related to a streaming platform"
+      >
+        <Bullets items={WHEN_PLATFORM} />
+        <p className="mt-6 max-w-2xl text-sm text-muted-foreground">
+          In that case, the platform's help center or support team is the right contact, not your
+          internet provider and not Upgrade Net.
+        </p>
+      </Section>
+
+      <Related
+        items={[
+          {
+            to: "/wifi",
+            label: "Home Wi-Fi",
+            note: "Placement, bands and interference explained.",
+          },
+          {
+            to: "/internet",
+            label: "Internet connection",
+            note: "Slow or unstable internet? Start with the checklist.",
+          },
+          {
+            to: "/cable-tv",
+            label: "Cable TV",
+            note: "No Signal, missing channels and set-top boxes.",
+          },
+        ]}
+      />
+      <GuideCTA
+        title="Streaming still stuttering?"
+        text="Our independent assistance team can help you understand what may be affecting your streaming and whether the next step belongs with your provider."
+      />
     </>
   );
 }

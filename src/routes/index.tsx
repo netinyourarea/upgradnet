@@ -1,89 +1,186 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Counter, Parallax, Reveal, SplitHeading } from "../components/motion";
+import { Parallax, Reveal, SplitHeading } from "../components/motion";
+import { CallButton } from "../components/blocks";
 import { FaqList } from "../components/site-chrome";
 import { usePageMeta } from "../hooks/use-page-meta";
 import heroHome from "../assets/hero-home.jpg";
-import fiber from "../assets/fiber.jpg";
+import internetHero from "../assets/internet-hero.jpg";
+import cable from "../assets/cable.jpg";
 import streamingImg from "../assets/streaming.jpg";
+import wifiImg from "../assets/wifi.jpg";
+import fiber from "../assets/fiber.jpg";
+import coverage from "../assets/coverage.jpg";
 import gaming from "../assets/gaming.jpg";
 import work from "../assets/work.jpg";
 import smartHome from "../assets/smart-home.jpg";
-import wifiImg from "../assets/wifi.jpg";
 import compare from "../assets/compare.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const DIRECTORY = [
-  { n: "01", to: "/internet", title: "Internet", note: "Fiber, cable & fixed wireless explained" },
-  { n: "02", to: "/cable-tv", title: "Cable & TV", note: "Channel line-ups and equipment basics" },
+const GUIDES = [
+  {
+    n: "01",
+    to: "/internet",
+    title: "Internet Connectivity",
+    img: internetHero,
+    alt: "Bright apartment with a laptop open on a marble table beside a sunlit living room",
+    note: "Find out why a connection slows down, drops out or stops working, and what to check first.",
+    topics: [
+      "Slow internet",
+      "Sudden disconnections",
+      "No internet access",
+      "Network interruptions",
+    ],
+    tone: "bg-background",
+  },
+  {
+    n: "02",
+    to: "/cable-tv",
+    title: "Cable TV",
+    img: cable,
+    alt: "Dark home cinema with warm wall lighting and a large screen",
+    note: "Understand missing channels, frozen pictures and the “No Signal” message on your television.",
+    topics: [
+      "Missing channels",
+      "Signal interruptions",
+      "Television connection problems",
+      "Equipment troubleshooting",
+    ],
+    tone: "bg-beige",
+  },
   {
     n: "03",
     to: "/streaming",
     title: "Streaming",
-    note: "Bandwidth planning for multi-screen homes",
+    img: streamingImg,
+    alt: "Family watching a film on a large television in a living room at dusk",
+    note: "See what lies behind buffering, changing picture quality and apps that will not load.",
+    topics: [
+      "Video buffering",
+      "Poor streaming quality",
+      "App connection problems",
+      "Streaming interruptions",
+    ],
+    tone: "bg-ink text-accent-foreground",
   },
-  { n: "04", to: "/wifi", title: "Wi-Fi", note: "Coverage, mesh layout and interference" },
+  {
+    n: "04",
+    to: "/wifi",
+    title: "Home Wi-Fi",
+    img: wifiImg,
+    alt: "White Wi-Fi router on an oak console table in a warm interior",
+    note: "Learn how your wireless network behaves in a real home, and how to get steadier coverage.",
+    topics: [
+      "Weak Wi-Fi signals",
+      "Router placement",
+      "Device connectivity",
+      "Wireless network problems",
+    ],
+    tone: "bg-ivory",
+  },
 ] as const;
 
 const PROCESS = [
   {
     n: "01",
-    title: "Tell us your address & household",
-    body: "We start with what matters: how many people, how many devices, and what you actually do online each evening.",
+    title: "Describe your issue",
+    body: "Tell us what is happening with your internet, cable television, Wi-Fi or streaming connection.",
   },
   {
     n: "02",
-    title: "We map available options",
-    body: "Our advisors outline the internet, cable, TV and streaming services documented as available in your area, in plain language.",
+    title: "Understand your options",
+    body: "Explore practical troubleshooting guidance and understand which issues may require your service provider's attention.",
   },
   {
     n: "03",
-    title: "You decide, we assist",
-    body: "Compare speed tiers, equipment and contract terms side by side. You choose; we help with the paperwork and setup questions.",
+    title: "Get independent assistance",
+    body: "Connect with our assistance team to discuss your situation and understand the next steps.",
   },
 ] as const;
 
-const GRID = [
+const PROBLEMS = [
   {
-    img: streamingImg,
-    alt: "Family watching a film on a large television in a warm living room",
-    tag: "Streaming",
-    title: "Multi-screen evenings",
-    body: "Two 4K streams, a tablet and a console can share a line comfortably — when the tier and router match the household.",
-    to: "/streaming",
+    q: "Why do internet connections suddenly stop working?",
+    a: "A sudden stop usually comes from one of three places: something in your home (a router that has frozen, a loose cable or a power glitch), something local to your area (maintenance or a damaged line), or something on the account side.",
+  },
+  {
+    q: "Why do internet speeds become slower?",
+    a: "Your connection is shared between every device at home, stretched by Wi-Fi distance and sometimes limited by how busy your provider's network is.",
+  },
+  {
+    q: "Why does my connection disconnect repeatedly?",
+    a: "Repeated drops often point to a weak wireless signal, interference from other devices, a router that is overheating or ageing, or an intermittent fault on the line.",
+  },
+  {
+    q: "Why do some devices connect while others cannot?",
+    a: "If a phone works and a laptop does not, the network itself is probably fine and the problem sits with the laptop: a stale saved password, a wrong network selected, or a setting that needs refreshing.",
+  },
+  {
+    q: "Why does restarting a router sometimes help?",
+    a: "A router is a small computer: a restart clears a frozen state and forces a fresh connection, but it cannot fix a problem outside your home.",
+  },
+] as const;
+
+const SCOPES = [
+  {
+    t: "One device",
+    d: "Other devices work normally. The issue is most likely with that device's Wi-Fi setting, saved network or software.",
+  },
+  {
+    t: "Your whole home",
+    d: "Every device is affected. Check your router and modem lights and cables, then consider whether your service is affected.",
+  },
+  {
+    t: "A wider area",
+    d: "Neighbors using the same provider report problems too, or the provider's status page lists an incident in your area.",
+  },
+] as const;
+
+const WAITING = [
+  "Check your provider's own outage or status page, using mobile data.",
+  "Avoid repeatedly restarting equipment; one proper restart is enough.",
+  "Save open work and keep your phone and laptop charged.",
+  "Use mobile data sparingly if it is your backup connection.",
+  "Look for text, email or app notifications from your provider.",
+] as const;
+
+const EVERYDAY = [
+  {
+    img: compare,
+    alt: "Hands holding a tablet on a bright desk while reviewing a household's devices",
+    tag: "Multiple-device households",
+    title: "Every person brings three screens",
+    body: "Phones, tablets, laptops and consoles all share one connection.",
     span: "md:col-span-7",
     ratio: "aspect-[16/10]",
   },
   {
-    img: gaming,
-    alt: "Modern gaming desk with monitor and headset lit in warm amber tones",
-    tag: "Gaming",
-    title: "Latency over headline speed",
-    body: "For competitive play, jitter and routing matter more than a big download number. We explain what to look at.",
-    to: "/internet",
+    img: work,
+    alt: "Bright home office with a laptop on a video call",
+    tag: "Remote working",
+    title: "Video calls need a steady line",
+    body: "A call does not need enormous speed, but it does need stability.",
     span: "md:col-span-5",
     ratio: "aspect-square",
   },
   {
-    img: work,
-    alt: "Bright home office with laptop on a video call",
-    tag: "Work from home",
-    title: "Upload is the quiet variable",
-    body: "Video calls, cloud backups and file transfers all lean on upstream capacity. Symmetrical options are worth understanding.",
-    to: "/internet",
+    img: gaming,
+    alt: "Gaming desk with a monitor and headset in warm amber light",
+    tag: "Entertainment",
+    title: "Streaming and gaming",
+    body: "Streaming adapts picture quality to the connection, while online games care most about consistency.",
     span: "md:col-span-5",
     ratio: "aspect-square",
   },
   {
     img: smartHome,
-    alt: "Hand adjusting a wall-mounted smart home control panel",
-    tag: "Smart home",
-    title: "Forty small devices",
-    body: "Sensors, cameras and speakers rarely need speed — they need a stable network with enough client capacity.",
-    to: "/wifi",
+    alt: "Hand touching a wall-mounted smart home control panel",
+    tag: "Smart home & everyday use",
+    title: "Small devices, constant connection",
+    body: "Cameras, speakers, thermostats and doorbells use little data but stay connected all day, and they add up on a home network.",
     span: "md:col-span-7",
     ratio: "aspect-[16/10]",
   },
@@ -91,57 +188,56 @@ const GRID = [
 
 const FAQS = [
   {
-    q: "Is Upgrade Net an internet provider?",
-    a: "No. Upgrade Net is an independent third-party information and assistance desk. We are not an ISP, we are not affiliated with any provider, and we do not operate any network.",
+    q: "Is Upgrade Net an internet service provider?",
+    a: "No.",
   },
   {
-    q: "What does the assistance actually include?",
-    a: "We help you understand available service types at your address, explain speed tiers and equipment, walk through documentation, and support you with setup and troubleshooting questions.",
+    q: "Why is my internet not working?",
+    a: "Common causes include a frozen router, loose cables, a device-specific problem, weak Wi-Fi, a local interruption or a provider outage.",
   },
   {
-    q: "Do you tell me which plan to buy?",
-    a: "We present the options and the trade-offs. The decision is always yours, and availability and terms are confirmed directly with the provider you choose.",
+    q: "How long does an internet outage last?",
+    a: "There is no universal answer.",
   },
   {
-    q: "How current is availability information?",
-    a: "Coverage and service details change frequently by address and region. We share what is documented at the time of your enquiry and recommend confirming before any commitment.",
+    q: "When should I contact my service provider?",
+    a: "Contact your provider if the problem continues after basic checks, if neighbors have the same issue, if you can see damaged external cables, or if you suspect an account or billing restriction.",
   },
 ] as const;
 
 function Home() {
   usePageMeta({
-    title: "Upgrade Net — Explore Internet, Cable & Streaming Options",
+    title: "Home Internet, Cable TV, Streaming & Wi-Fi Help | Upgrade Net",
     description:
-      "Independent assistance desk for home connectivity. Explore, compare and understand internet, cable, TV and streaming options available at your address.",
+      "Independent guidance for slow internet, sudden disconnections, Wi-Fi problems, cable TV and streaming issues. Practical troubleshooting steps and clear information.",
+    path: "/",
   });
 
   return (
     <>
-      {/* HERO — editorial split, oversized black type + asymmetric photography */}
+      {/* HERO */}
       <section className="rule-b">
         <div className="shell grid gap-10 pb-12 pt-14 md:grid-cols-12 md:gap-8 md:pb-16 md:pt-20">
           <div className="md:col-span-7">
-            <p className="label-mono">Independent connectivity desk — est. 2016</p>
-            <h1 className="display-lg mt-7 text-[clamp(2.6rem,7.1vw,6.2rem)]">
-              <SplitHeading text="Understand" />
-              <SplitHeading text="what your" className="text-accent" />
-              <SplitHeading text="home can" />
-              <SplitHeading text="connect to" />
+            <p className="label-mono">Independent connectivity guide</p>
+            <h1 className="display-lg mt-7 text-[clamp(2.3rem,5.9vw,5.2rem)]">
+              <SplitHeading text="Understand your" />
+              <SplitHeading text="home internet" className="text-accent" />
+              <SplitHeading text="connection." />
             </h1>
-            <div className="mt-10 grid gap-8 sm:grid-cols-2">
-              <p className="max-w-md text-base text-muted-foreground">
-                Upgrade Net helps households explore, compare and understand the internet, cable, TV
-                and streaming services documented as available at their address — without sales
-                pressure and without provider affiliation.
-              </p>
-              <div className="flex flex-col items-start gap-4">
-                <a href="tel:+18552024908" className="btn-accent">
-                  (855) 202-4908
-                </a>
-                <Link to="/internet" className="btn-outline">
-                  Explore services
-                </Link>
-              </div>
+            <p className="mt-8 font-display text-xl font-extrabold uppercase leading-tight tracking-[-0.02em] md:text-2xl">
+              Clear Guidance for Internet, Cable TV &amp; Streaming.
+            </p>
+            <p className="mt-5 max-w-xl text-base text-muted-foreground">
+              Experiencing slow internet, unexpected disconnections, Wi-Fi problems or streaming
+              interruptions? Upgrade Net helps households understand common connectivity issues,
+              explore practical troubleshooting steps and navigate their service options.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <CallButton>Get assistance</CallButton>
+              <Link to="/internet" className="btn-outline">
+                Explore troubleshooting
+              </Link>
             </div>
           </div>
 
@@ -149,277 +245,270 @@ function Home() {
             <Parallax className="aspect-[4/5] w-full" strength={26}>
               <img
                 src={heroHome}
-                alt="Person using a laptop on a linen sofa in a bright modern connected home"
+                alt="Person using a laptop on a linen sofa in a bright, modern connected home"
                 width={1408}
                 height={1760}
                 className="img-cover"
               />
             </Parallax>
-            <div className="mt-4 flex items-start justify-between gap-6 rule-t pt-4">
-              <p className="label-mono">Fig. 01 — Connected household</p>
-              <p className="max-w-[16rem] text-xs text-muted-foreground">
-                Advisory only. Services are provided by third-party companies, not by Upgrade Net.
-              </p>
-            </div>
+            <p className="label-mono mt-4 border-t border-line pt-4">
+              Fig. 01 — A connected household
+            </p>
           </div>
         </div>
       </section>
 
-      {/* HORIZONTAL SERVICE DIRECTORY */}
-      <section aria-labelledby="directory" className="rule-b bg-ivory">
-        <div className="shell py-14 md:py-16">
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 id="directory" className="font-display text-sm uppercase tracking-[0.22em]">
-              Service directory
+      {/* A. INTRODUCTION */}
+      <section aria-labelledby="intro" className="rule-b bg-ivory">
+        <div className="shell grid gap-10 py-16 md:grid-cols-12 md:py-24">
+          <div className="md:col-span-4">
+            <p className="label-mono">Introduction</p>
+            <h2 id="intro" className="mt-5 text-3xl font-extrabold uppercase md:text-[2.6rem]">
+              Home life now runs on the connection
             </h2>
-            <p className="label-mono">Four areas of assistance</p>
           </div>
-          <ul className="mt-10 grid divide-y divide-line border-t border-line md:grid-cols-4 md:divide-x md:divide-y-0">
-            {DIRECTORY.map((item, i) => (
-              <li key={item.to}>
-                <Reveal delay={i * 90}>
-                  <Link to={item.to} className="group block px-0 py-8 md:px-7">
-                    <p className="label-mono">{item.n}</p>
-                    <p className="mt-6 font-display text-3xl font-extrabold uppercase transition-colors group-hover:text-accent">
-                      {item.title}
-                    </p>
-                    <p className="mt-4 text-sm text-muted-foreground">{item.note}</p>
-                    <span className="label-mono mt-8 inline-block transition-transform group-hover:translate-x-2">
-                      View →
-                    </span>
-                  </Link>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* MARQUEE */}
-      <div className="overflow-hidden rule-b bg-ink py-4 text-accent-foreground">
-        <div className="marquee-track">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex shrink-0 items-center">
-              {[
-                "Fiber",
-                "Cable",
-                "Fixed wireless",
-                "IPTV",
-                "Mesh Wi-Fi",
-                "Streaming",
-                "Bundles",
-              ].map((word) => (
-                <span
-                  key={`${dup}-${word}`}
-                  className="px-8 font-mono text-xs uppercase tracking-[0.28em]"
-                >
-                  {word} <span className="text-accent">/</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* OVERSIZED PROCESS 01 / 02 / 03 */}
-      <section aria-labelledby="process" className="shell py-20 md:py-28">
-        <div className="grid gap-8 md:grid-cols-12">
-          <h2 id="process" className="display-lg md:col-span-6">
-            How assistance works
-          </h2>
-          <p className="md:col-span-5 md:col-start-8 text-muted-foreground">
-            A short, transparent process. No obligation at any step, and no claims about which
-            service is right for everyone.
-          </p>
-        </div>
-
-        <ol className="mt-16 border-t border-line">
-          {PROCESS.map((step, i) => (
-            <li key={step.n} className="rule-b">
-              <Reveal delay={i * 120}>
-                <div className="grid items-start gap-6 py-10 md:grid-cols-12">
-                  <p className="num-oversize md:col-span-3 text-beige">{step.n}</p>
-                  <h3 className="md:col-span-5 text-2xl font-extrabold uppercase md:text-4xl">
-                    {step.title}
-                  </h3>
-                  <p className="md:col-span-4 text-sm text-muted-foreground">{step.body}</p>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* EDITORIAL SPLIT — internet performance */}
-      <section aria-labelledby="performance" className="rule-t bg-ivory">
-        <div className="shell grid gap-0 md:grid-cols-2">
-          <Parallax
-            className="aspect-[4/3] md:aspect-auto md:h-full md:min-h-[36rem]"
-            strength={34}
-          >
-            <img
-              src={fiber}
-              alt="Glowing fiber optic strands against a dark background"
-              loading="lazy"
-              width={1600}
-              height={912}
-              className="img-cover"
-            />
-          </Parallax>
-          <div className="flex flex-col justify-center px-0 py-14 md:px-14 md:py-20">
-            <p className="label-mono">Field note / Performance</p>
-            <h2 id="performance" className="display-lg mt-6">
-              Speed is one number. Experience is five.
-            </h2>
-            <p className="mt-8 max-w-lg text-muted-foreground">
-              Households often focus on download speed alone. In practice, upload capacity, latency,
-              device count, router placement and in-home wiring shape how a connection feels. Our
-              advisors explain each factor so you can read a plan sheet with confidence.
+          <div className="space-y-5 text-[1.02rem] text-muted-foreground md:col-span-7 md:col-start-6">
+            <p>
+              Work, school, banking, video calls with family, television, music and the thermostat
+              on the wall: in most households, nearly all of it depends on one internet connection.
+              When it falters, the effect is felt everywhere at once.
             </p>
-            <dl className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-              {[
-                ["Download", "Streaming, downloads, browsing"],
-                ["Upload", "Calls, backups, cloud work"],
-                ["Latency", "Gaming, conferencing responsiveness"],
-                ["Capacity", "Simultaneous devices in the home"],
-              ].map(([term, desc]) => (
-                <div key={term} className="border-t border-line pt-4">
-                  <dt className="font-display text-lg font-extrabold uppercase">{term}</dt>
-                  <dd className="mt-2 text-sm text-muted-foreground">{desc}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* FULL-WIDTH CINEMATIC STREAMING IMAGE */}
-      <section className="relative rule-t">
-        <Parallax className="h-[62vh] min-h-[24rem] w-full" strength={48}>
-          <img
-            src={streamingImg}
-            alt="Cinematic living room at dusk with a large screen and warm lighting"
-            loading="lazy"
-            width={1920}
-            height={1008}
-            className="img-cover"
-          />
-        </Parallax>
-        <div className="pointer-events-none absolute inset-0 flex items-end">
-          <div className="shell w-full pb-10">
-            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-foreground">
-              Fig. 02 — Entertainment at home
-            </p>
-            <p className="mt-4 max-w-2xl font-display text-3xl font-extrabold uppercase leading-[0.95] text-accent-foreground md:text-5xl">
-              Cable, IPTV and streaming, explained side by side
+            <p>
+              This site is written to help you tell them apart. Start with the guides below, follow
+              the practical steps, and know when the right move is to contact your actual service
+              provider.
             </p>
           </div>
         </div>
       </section>
 
-      {/* MAGAZINE GRID */}
-      <section aria-labelledby="usecases" className="shell py-20 md:py-28">
+      {/* B. EXPLORE OUR GUIDES — four visually distinct cards */}
+      <section aria-labelledby="guides" className="shell py-16 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-6">
-          <h2 id="usecases" className="display-lg max-w-xl">
-            Built around how you use the line
+          <h2 id="guides" className="display-lg max-w-2xl text-[clamp(2rem,4.8vw,4rem)]">
+            Explore our guides
           </h2>
-          <p className="label-mono">Four household profiles</p>
+          <p className="label-mono">Four areas of home connectivity</p>
         </div>
-        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-12">
-          {GRID.map((card, i) => (
-            <article key={card.title} className={card.span}>
-              <Reveal delay={i * 100}>
-                <Link to={card.to} className="group block">
-                  <div className={`overflow-hidden ${card.ratio}`}>
+        <ul className="mt-10 grid gap-6 md:grid-cols-2">
+          {GUIDES.map((g, i) => (
+            <li key={g.to}>
+              <Reveal delay={(i % 2) * 100} className="h-full">
+                <Link
+                  to={g.to}
+                  className={`group flex h-full flex-col border border-line-strong ${g.tone}`}
+                >
+                  <div className="aspect-[16/9] overflow-hidden">
                     <img
-                      src={card.img}
-                      alt={card.alt}
+                      src={g.img}
+                      alt={g.alt}
                       loading="lazy"
+                      width={1200}
+                      height={675}
                       className="img-cover transition-transform duration-700 group-hover:scale-[1.05]"
                     />
                   </div>
-                  <div className="mt-5 flex items-baseline justify-between gap-4 border-t border-line pt-4">
-                    <p className="label-mono">{card.tag}</p>
-                    <span className="label-mono transition-transform group-hover:translate-x-2">
-                      →
+                  <div className="flex flex-1 flex-col p-6 md:p-8">
+                    <p className="label-mono !text-accent">{g.n}</p>
+                    <h3 className="mt-3 text-3xl font-extrabold uppercase transition-colors group-hover:text-accent">
+                      {g.title}
+                    </h3>
+                    <p className="mt-4 max-w-md text-sm opacity-80">{g.note}</p>
+                    <ul className="mt-6 flex flex-wrap gap-2">
+                      {g.topics.map((t) => (
+                        <li
+                          key={t}
+                          className="border border-current/30 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em] opacity-80"
+                        >
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="label-mono mt-8 inline-block !text-current transition-transform group-hover:translate-x-2">
+                      Read the guide →
                     </span>
                   </div>
-                  <h3 className="mt-4 text-2xl font-extrabold uppercase transition-colors group-hover:text-accent md:text-3xl">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 max-w-lg text-sm text-muted-foreground">{card.body}</p>
                 </Link>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* C. HOW ASSISTANCE WORKS */}
+      <section
+        aria-labelledby="process"
+        className="rule-t bg-ink py-16 text-accent-foreground md:py-24"
+      >
+        <div className="shell">
+          <div className="grid gap-8 md:grid-cols-12">
+            <h2 id="process" className="display-lg text-[clamp(2rem,4.8vw,4rem)] md:col-span-6">
+              How assistance works
+            </h2>
+            <p className="text-beige md:col-span-4 md:col-start-9">
+              Three straightforward steps, from describing the problem to knowing what to do next.
+            </p>
+          </div>
+          <ol className="mt-14 grid gap-px bg-white/15 md:grid-cols-3">
+            {PROCESS.map((step, i) => (
+              <li key={step.n} className="bg-ink">
+                <Reveal delay={i * 120}>
+                  <div className="p-6 md:p-9">
+                    <p className="num-oversize text-accent">{step.n}</p>
+                    <h3 className="mt-8 text-2xl font-extrabold uppercase">{step.title}</h3>
+                    <p className="mt-4 text-sm text-beige">{step.body}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* D. INTERNET PROBLEMS EXPLAINED */}
+      <section aria-labelledby="problems" className="rule-b">
+        <div className="shell grid gap-0 md:grid-cols-12 md:gap-12">
+          <div className="pt-16 md:col-span-5 md:py-24">
+            <div className="md:sticky md:top-28">
+              <p className="label-mono">Internet problems explained</p>
+              <h2 id="problems" className="display-lg mt-5 text-[clamp(2rem,4.4vw,3.6rem)]">
+                What usually lies behind the problem
+              </h2>
+              <Parallax className="mt-10 hidden aspect-[4/3] w-full md:block" strength={26}>
+                <img
+                  src={fiber}
+                  alt="Glowing fiber optic strands against a dark background"
+                  loading="lazy"
+                  width={1600}
+                  height={912}
+                  className="img-cover"
+                />
+              </Parallax>
+            </div>
+          </div>
+          <div className="pb-16 pt-2 md:col-span-7 md:py-24">
+            <FaqList items={PROBLEMS} defaultOpen={0} idPrefix="problems" />
+            <Link to="/internet" className="btn-outline mt-10">
+              Full internet connection guide
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* E. OUTAGES AND RESTORATION */}
+      <section aria-labelledby="outages" className="bg-ivory rule-b">
+        <div className="shell py-16 md:py-24">
+          <div className="grid gap-8 md:grid-cols-12">
+            <div className="md:col-span-6">
+              <p className="label-mono">Outages and restoration</p>
+              <h2 id="outages" className="display-lg mt-5 text-[clamp(2rem,4.8vw,4rem)]">
+                When the service itself is down
+              </h2>
+            </div>
+            <div className="space-y-5 text-muted-foreground md:col-span-6">
+              <p>
+                An internet outage is an interruption in connectivity. It can affect one household,
+                a neighborhood or a wider service area. A problem with your own equipment and a
+                provider-side outage can look the same from the sofa, but they are fixed by
+                different people.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <p className="label-mono">How wide is the problem?</p>
+              <ul className="mt-5 grid border-l border-t border-line-strong sm:grid-cols-3">
+                {SCOPES.map((s, i) => (
+                  <li key={s.t} className="border-b border-r border-line-strong bg-background p-5">
+                    <p className="font-display text-xs font-extrabold text-accent">0{i + 1}</p>
+                    <h3 className="mt-2 text-lg font-extrabold uppercase leading-tight">{s.t}</h3>
+                    <p className="mt-3 text-sm text-muted-foreground">{s.d}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:col-span-5">
+              <p className="label-mono">What you can check while waiting</p>
+              <ul className="mt-5 divide-y divide-line border-y border-line">
+                {WAITING.map((w) => (
+                  <li key={w} className="flex gap-3 py-3 text-sm text-muted-foreground">
+                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" />
+                    {w}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <Link to="/outages" className="btn-outline mt-12">
+            Read the outage guide
+          </Link>
+        </div>
+      </section>
+
+      {/* Photographic break */}
+      <section className="relative">
+        <Parallax className="h-[52vh] min-h-[20rem] w-full" strength={44}>
+          <img
+            src={coverage}
+            alt="Aerial view of a sunlit residential neighborhood at golden hour"
+            loading="lazy"
+            width={1600}
+            height={912}
+            className="img-cover"
+          />
+        </Parallax>
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-transparent to-transparent">
+          <div className="shell w-full pb-9">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-foreground">
+              Fig. 02 — One street, one network, many homes
+            </p>
+            <p className="mt-4 max-w-3xl font-display text-2xl font-extrabold uppercase leading-[0.98] text-accent-foreground md:text-5xl">
+              Restoration depends on the provider, the fault and the circumstances.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* F. BUILT AROUND EVERYDAY CONNECTIVITY */}
+      <section aria-labelledby="everyday" className="shell py-16 md:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-6">
+          <h2 id="everyday" className="display-lg max-w-2xl text-[clamp(2rem,4.8vw,4rem)]">
+            Built around everyday connectivity
+          </h2>
+          <p className="max-w-xs text-sm text-muted-foreground">
+            No two households use their connection the same way. Here is what the load looks like.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-12">
+          {EVERYDAY.map((card, i) => (
+            <article key={card.title} className={card.span}>
+              <Reveal delay={i * 100}>
+                <div className={`overflow-hidden ${card.ratio}`}>
+                  <img
+                    src={card.img}
+                    alt={card.alt}
+                    loading="lazy"
+                    className="img-cover transition-transform duration-700 hover:scale-[1.04]"
+                  />
+                </div>
+                <p className="label-mono mt-5 border-t border-line pt-4">{card.tag}</p>
+                <h3 className="mt-3 text-2xl font-extrabold uppercase md:text-3xl">{card.title}</h3>
+                <p className="mt-3 max-w-lg text-sm text-muted-foreground">{card.body}</p>
               </Reveal>
             </article>
           ))}
         </div>
       </section>
 
-      {/* TYPOGRAPHIC STATISTICS */}
-      <section
-        aria-labelledby="stats"
-        className="rule-t bg-ink py-20 text-accent-foreground md:py-28"
-      >
-        <div className="shell">
-          <h2 id="stats" className="label-mono !text-beige">
-            By the numbers
-          </h2>
-          <dl className="mt-12 divide-y divide-white/15 border-t border-white/15">
-            {[
-              { v: 128000, s: "+", k: "Households assisted since 2016" },
-              { v: 41, s: "", k: "Service areas covered by our advisors" },
-              { v: 9, s: " min", k: "Median time to reach a human" },
-            ].map((row, i) => (
-              <div key={row.k} className="grid items-baseline gap-4 py-8 md:grid-cols-12">
-                <dt className="label-mono !text-beige md:col-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </dt>
-                <dd className="font-display text-[3.25rem] font-extrabold leading-[0.85] tracking-[-0.05em] md:col-span-5 md:text-[5.25rem]">
-                  <Counter to={row.v} suffix={row.s} />
-                </dd>
-                <p className="md:col-span-6 text-sm text-beige">{row.k}</p>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* CUSTOMER QUOTE */}
-      <section className="rule-b">
-        <div className="shell grid gap-10 py-20 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <div className="aspect-[4/3] overflow-hidden md:aspect-[3/4]">
-              <img
-                src={compare}
-                alt="Hands holding a tablet comparing home service plans on a bright desk"
-                loading="lazy"
-                width={1408}
-                height={1008}
-                className="img-cover"
-              />
-            </div>
-          </div>
-          <figure className="md:col-span-8 md:pl-8">
-            <p className="label-mono">Customer note</p>
-            <blockquote className="mt-8 font-display text-3xl font-extrabold uppercase leading-[0.98] md:text-5xl">
-              "They walked through three service types in fifteen minutes and never once pushed me
-              toward a sale. I finally understood what I was actually paying for."
-            </blockquote>
-            <figcaption className="mt-10 border-t border-line pt-5 text-sm text-muted-foreground">
-              Marisol T. — household of four, Tucson AZ
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section aria-labelledby="faq" className="shell py-20 md:py-24">
+      {/* G. COMMON QUESTIONS */}
+      <section aria-labelledby="faq" className="rule-t shell py-16 md:py-24">
         <div className="grid gap-8 md:grid-cols-12">
-          <h2 id="faq" className="display-lg md:col-span-5">
+          <h2 id="faq" className="display-lg text-[clamp(2rem,4.4vw,3.6rem)] md:col-span-5">
             Common questions
           </h2>
           <div className="md:col-span-7">
-            <FaqList items={[...FAQS]} />
+            <FaqList items={FAQS} idPrefix="home-faq" />
             <Link to="/faq" className="btn-outline mt-10">
               All questions
             </Link>
@@ -427,43 +516,41 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* H. FINAL CTA */}
       <section className="rule-t bg-ivory">
-        <div className="shell grid gap-10 py-20 md:grid-cols-12 md:py-28">
+        <div className="shell grid gap-10 py-16 md:grid-cols-12 md:py-24">
           <div className="md:col-span-8">
-            <h2 className="display-xl">
-              Let&apos;s map your <span className="text-accent">address.</span>
+            <h2 className="display-xl text-[clamp(2.4rem,7vw,6.5rem)]">
+              Let&apos;s understand your <span className="text-accent">connection.</span>
             </h2>
           </div>
-          <div className="md:col-span-4 flex flex-col justify-end gap-6">
+          <div className="flex flex-col justify-end gap-6 md:col-span-4">
             <p className="text-sm text-muted-foreground">
-              Independent guidance on internet, cable, TV and streaming options. No obligation, no
-              affiliation, no pressure.
+              Whether you&apos;re experiencing an internet interruption, Wi-Fi problem or streaming
+              issue, start with clear information and independent assistance.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <a href="tel:+18552024908" className="btn-accent">
+            <p className="text-sm text-muted-foreground">
+              If the problem isn&apos;t solved, visit our live team support on our toll-free number{" "}
+              <a
+                href="tel:+18552024908"
+                className="whitespace-nowrap font-bold text-foreground underline decoration-accent underline-offset-4"
+              >
                 (855) 202-4908
               </a>
-              <Link to="/about" className="btn-outline">
-                Who we are
+              .
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <CallButton>Contact our team</CallButton>
+              <Link to="/contact" className="btn-outline">
+                Send a message
               </Link>
             </div>
+            <p className="text-xs text-muted-foreground">
+              Independent third-party assistance. Not an internet service provider.
+            </p>
           </div>
         </div>
       </section>
-
-      <div className="rule-t">
-        <div className="shell py-8">
-          <img
-            src={wifiImg}
-            alt="Minimal white mesh Wi-Fi router on an oak console in a warm interior"
-            loading="lazy"
-            width={1200}
-            height={1504}
-            className="h-40 w-full object-cover object-center md:h-56"
-          />
-        </div>
-      </div>
     </>
   );
 }
